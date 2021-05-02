@@ -16,7 +16,7 @@ Create an AWS Lambda that runs `hello.py` .
 ### Create the app bundle
 
 ```
-cd bin
+cd hello.app
 make
 cd ..
 ```
