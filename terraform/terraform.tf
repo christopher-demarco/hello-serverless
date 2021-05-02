@@ -25,7 +25,7 @@ EOF
 resource "aws_lambda_function" "hello_lambda" {
   filename = "../bin/hello.zip"
   function_name = "hello-nuvalence"
-  handler = "main"
+  handler = "hello.main"
   role = aws_iam_role.iam_for_lambda.arn
   source_code_hash = filebase64sha256("../bin/hello.zip")
   runtime = "python3.6"
