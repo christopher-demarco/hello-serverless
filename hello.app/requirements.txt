@@ -1,0 +1,4 @@
+pytest
+ipython
+pudb
+pytest-pep8

@@ -4,6 +4,7 @@ Hello, serverless!
 
 Create an AWS Lambda that runs `hello.py`, accessible via API Gateway.
 
+
 ## Usage
 
 ### Prerequisites
@@ -15,10 +16,11 @@ Create an AWS Lambda that runs `hello.py`, accessible via API Gateway.
 ### Create the app bundle
 
 ```
-cd bin
+cd hello.app
 make
 cd ..
 ```
+
 
 ### Create cloud infra
 
@@ -35,3 +37,24 @@ cd ..
 The Python code is bundled as a zipfile for convenience, as a runtime
 image would be overkill.
 
+
+## Developing
+
+### devenv
+
+### hello.app
+
+A simple python virtualenv: 
+
+```
+python3 -mvenv venv
+. ./venv/bin/activate
+pip install --upgrade pip && pip install --upgrade setuptools
+[[ -e requirements.txt ]] && pip install -r requirements.txt
+[[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
+
+```
+
+### tests
+
+hello.app: `make test`
