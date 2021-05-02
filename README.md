@@ -8,7 +8,7 @@ Create an AWS Lambda that runs `hello.py` .
 
 ### Prerequisites
 
-  - Python ~> 3.x
+  - Python ~> 3.6.x
   - Terraform ~> 12.x
   - AWS credentials accessible via `AWS_PROFILE`
   
