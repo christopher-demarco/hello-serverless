@@ -2,7 +2,7 @@
 
 Hello, serverless!
 
-Create an AWS Lambda that runs `hello.py` .
+Create an AWS Lambda that runs `hello.py`, accessible via API Gateway.
 
 
 ## Usage
@@ -58,4 +58,3 @@ pip install --upgrade pip && pip install --upgrade setuptools
 ### tests
 
 hello.app: `make test`
-
