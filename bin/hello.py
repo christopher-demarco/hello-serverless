@@ -1,3 +1,7 @@
 #!/usr/bin/env python
 
-print('Hello, serverless!')
+def main():
+    return("Hello, world!")
+
+if __name__ == '__main__':
+    print(main())
