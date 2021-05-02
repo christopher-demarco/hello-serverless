@@ -16,7 +16,7 @@ Create an AWS Lambda that runs `hello.py` .
 
 ```
 cd bin
-make zip
+make
 cd ..
 ```
 
@@ -30,3 +30,7 @@ cd ..
 ```
 
 
+## Design
+
+The Python code is bundled as a zipfile for convenience, as a runtime
+image would be overkill.
