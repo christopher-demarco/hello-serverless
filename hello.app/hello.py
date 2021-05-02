@@ -3,10 +3,12 @@
 import json
 
 def main(event, context):
+    body = json.dumps(f"Hello, world!")
     return {
         'statusCode': 200,
-        'body': json.dumps("Hello, world!")
+        'body': body
     }
 
 if __name__ == '__main__':
-    print(main(None, None)['body'])
+    out = main(None, None)['body']
+    print(out)

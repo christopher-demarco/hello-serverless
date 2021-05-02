@@ -4,7 +4,7 @@ clean:
 	rm -f hello.zip
 
 test:
-	pytest --pep8 --clearcache
+	py.test --cache-clear
 
 zip:
 	zip hello.zip hello.py
