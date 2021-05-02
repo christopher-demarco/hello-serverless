@@ -40,7 +40,7 @@ image would be overkill.
 
 ## Developing
 
-### dev env
+### devenv
 
 ### hello.app
 
@@ -54,3 +54,8 @@ pip install --upgrade pip && pip install --upgrade setuptools
 [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
 
 ```
+
+### tests
+
+hello.app: `make test`
+
