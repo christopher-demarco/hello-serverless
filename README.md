@@ -2,7 +2,7 @@
 
 Hello, serverless!
 
-Create an AWS Lambda that runs `hello.py` .
+Create an AWS Lambda that runs `hello.py`, accessible via API Gateway.
 
 ## Usage
 
@@ -34,3 +34,4 @@ cd ..
 
 The Python code is bundled as a zipfile for convenience, as a runtime
 image would be overkill.
+
