@@ -1,4 +1,4 @@
-name: Unit tests
+name: App unit tests
 on: [push]
 jobs:
   Pytest:
