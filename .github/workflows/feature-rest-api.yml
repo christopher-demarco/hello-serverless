@@ -11,5 +11,7 @@ jobs:
   REST-API-works:
     runs-on: ubuntu-latest
     steps:
-      - name: Test for CRUD
+      - name: Test that health endpoint exists
+        run: /bin/false
+      - name: Test for optional CRUD
         run: /bin/false

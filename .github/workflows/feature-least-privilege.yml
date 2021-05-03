@@ -1,0 +1,10 @@
+name: least-privilege
+on: [push]
+jobs:
+  least-privilege-exists:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test for existence
+        run: /bin/false
+      - name: Test for retention policy
+        run: /bin/false        

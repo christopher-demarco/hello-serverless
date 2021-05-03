@@ -1,0 +1,10 @@
+name: logging
+on: [push]
+jobs:
+  logging-exists:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test for existence
+        run: /bin/false
+      - name: Test for retention policy
+        run: /bin/false        

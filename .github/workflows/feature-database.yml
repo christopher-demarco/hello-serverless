@@ -6,5 +6,7 @@ jobs:
     steps:
       - name: Test for existence
         run: /bin/false
-      - name: Test for exposed listener
+      - name: Test for Postgresql ~> v10
+        run: /bin/false        
+      - name: Test that listener is unexposed
         run: /bin/false        
