@@ -1,8 +1,0 @@
-name: cache
-on: [push]
-jobs:
-  cache-exists:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test for existence
-        run: /bin/false
