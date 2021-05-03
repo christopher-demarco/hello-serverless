@@ -1,7 +1,7 @@
 name: REST API
 on: [push]
 jobs:
-  REST API exists:
+  REST-API-exists:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
