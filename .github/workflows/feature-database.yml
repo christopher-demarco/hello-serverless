@@ -1,0 +1,12 @@
+name: database
+on: [push]
+jobs:
+  database-exists:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test for existence
+        run: /bin/false
+      - name: Test for Postgresql ~> v10
+        run: /bin/false        
+      - name: Test that listener is unexposed
+        run: /bin/false        

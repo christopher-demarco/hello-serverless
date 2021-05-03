@@ -4,5 +4,14 @@ jobs:
   REST-API-exists:
     runs-on: ubuntu-latest
     steps:
-      - name: Test that REST API exists
+      - name: Test for existence
+        run: /bin/false
+      - name: Test for TLS 1.2
+        run: /bin/false        
+  REST-API-works:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test that health endpoint exists
+        run: /bin/false
+      - name: Test for optional CRUD
         run: /bin/false

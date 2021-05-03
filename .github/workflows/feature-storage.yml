@@ -1,0 +1,10 @@
+name: storage
+on: [push]
+jobs:
+  storage-exists:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test for existence
+        run: /bin/false
+      - name: Test for retention policy
+        run: /bin/false        

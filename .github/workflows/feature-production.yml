@@ -1,0 +1,10 @@
+name: production
+on: [push]
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Demonstrate good habits
+        run: /bin/false
+      - name: Provide useful operations tooling
+        run: /bin/false
