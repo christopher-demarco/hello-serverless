@@ -4,6 +4,7 @@ jobs:
   Pytest:
     runs-on: ubuntu-latest
     steps:
+      - name: actions/checkout@v2
       - run: |
           cd hello.app
-          make test      
+          make test
