@@ -1,8 +1,8 @@
 # hello, serverless
 
-Continuously deploy a (buggy) Python ~> 3.6 application that
-implements a trivial CRUD interface to a collection of plaintext
-files.
+Continuously deploy a Python ~> 3.6 [application](app) [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)](hello.app/hello_test.py)
+that implements a
+trivial CRUD interface to a collection of plaintext files.
 
 The client gave the following requirements:
 
@@ -34,9 +34,9 @@ The client gave the following requirements:
   the database listener should not be exposed to any other applications or consumers
 
 
-[![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)](hello.app/hello_test.py)
-[Python app](app)
-
+The app requires db credentials and a client API key used to
+access a remote service; both are only accessible to the application
+from within its runtime [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)](hello.app/hello_test.py).
 
 
 
