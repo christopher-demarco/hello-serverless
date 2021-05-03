@@ -1,0 +1,8 @@
+name: REST API
+on: [push]
+jobs:
+  REST-API-exists:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test that REST API exists
+        run: /bin/false
