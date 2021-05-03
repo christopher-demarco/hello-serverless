@@ -1,12 +1,14 @@
 # hello, serverless
 
-Continuously deploy a Python ~> 3.6 application that implements a
-trivial CRUD interface to a collection of plaintext files.
+Continuously deploy a (buggy) Python ~> 3.6 application that
+implements a trivial CRUD interface to a collection of plaintext
+files.
 
 - [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-rest-api.yml/badge.svg)](.github/workflows/feature-rest-api.yml)
   the application will present a REST API (HTTPS with TLS v.1.2) as the consumer interface
-- it will be deployed using regional function-as-a-service
-  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)](hello.app/hello_test.py)
+- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-lambda.yml/badge.svg)](.github/workflows/feature-lambda.yml).
+  it will be deployed using [regional function-as-a-service](terraform/lambda.tf)
+
 - uses a PostgreSQL database at version ~>10
 - maintains a cache layer for the database
 - requires storage for uploaded data files with a 30-day retention policy
@@ -15,19 +17,12 @@ trivial CRUD interface to a collection of plaintext files.
 - least privilege access model
 - the database listener should not be exposed to any other applications or consumers
 
-Present a [Python app](app)
-
-over a REST API
-
-deployed as an AWS Lambda
-[![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-lambda.yml/badge.svg)](.github/workflows/feature-lambda.yml).
+[![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)](hello.app/hello_test.py)
+[Python app](app)
 
 
 
 
-
-
-FIXME: Link to implementation throughout
 
 
 
