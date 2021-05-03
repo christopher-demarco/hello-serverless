@@ -1,6 +1,6 @@
 # nuvalence-interview
 
-![unit tests](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)
+[![unit tests](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)](hello.app/hello_test.py)
 
 Hello, serverless!
 
