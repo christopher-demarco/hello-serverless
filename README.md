@@ -1,13 +1,10 @@
 # nuvalence-interview
 
-Hello, serverless!
+Present a [Python app](app)
+[![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)](hello.app/hello_test.py)
+over a REST API
+[![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-rest-api.yml/badge.svg)](.github/workflows/feature-rest-api.yml)
 
-Create an AWS Lambda that runs `hello.py`, accessible via API Gateway:
-
-(click each badge to view its specification)
-
-- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)](hello.app/hello_test.py)
-- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-rest-api.yml/badge.svg)](.github/workflows/feature-rest-api.yml)
 
 
 ## Usage
