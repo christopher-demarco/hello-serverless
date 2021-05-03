@@ -100,3 +100,5 @@ pip install --upgrade pip && pip install --upgrade setuptools
 `make test`
 
 
+-----
+Copyright (c) 2021 Christopher DeMarco. All rights reserved.
