@@ -1,51 +1,13 @@
-# hello, serverless
+# nuvalence-interview
 
-Continuously deploy a Python ~> 3.6 application that implements a
-trivial CRUD interface to a collection of plaintext files. The client
-gave the following requirements:
+Hello, serverless!
 
-- the application will present a REST API (HTTPS with TLS v.1.2) as the consumer interface
-  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-rest-api.yml/badge.svg)](.github/workflows/feature-rest-api.yml)
+Create an AWS Lambda that runs `hello.py`, accessible via API Gateway:
 
-- it will be deployed using [regional function-as-a-service](terraform/lambda.tf)
-  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-lambda.yml/badge.svg)](.github/workflows/feature-lambda.yml)
+(click each badge to view its specification)
 
-- uses a PostgreSQL database at version ~>10
-  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-database.yml/badge.svg)](.github/workflows/feature-database.yml)
-
-- maintains a cache layer for the database
-  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-cache.yml/badge.svg)](.github/workflows/feature-cache.yml)
-
-- requires storage for uploaded data files with a 30-day retention policy
-  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-cache.yml/badge.svg)](.github/workflows/feature-cache.yml)
-
-- an automated health check against a test endpoint, scheduled daily
-  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-healthcheck.yml/badge.svg)](.github/workflows/feature-healthcheck.yml)
-
-- centralized logging with a 7-day retention policy
-  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-logging.yml/badge.svg)](.github/workflows/feature-logging.yml)
-
-- least privilege access model
-  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-least-privilege.yml/badge.svg)](.github/workflows/feature-least-privilege.yml)
-
-- the database listener should not be exposed to any other applications or consumers
-  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-database.yml/badge.svg)](.github/workflows/feature-database.yml)
-
-
-The app is a single file called [user_uploads.py](app/user_uploads.py]
-[![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)](app/hello_test.py).
-The app requires db credentials and a client API key used to
-access a remote service; both are only accessible to the application
-from within its runtime 
-[![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-secrets.yml/badge.svg)](.github/workflows/feature-secrets.yml)
-.
-
-The application does not require regional redundancy or failover
-capabilities; otherwise the code should be production-ready
-[![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-production.yml/badge.svg)](.github/workflows/feature-production.yml)
-, with all
-of the considerations implied therein.
-
+- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)](hello.app/hello_test.py)
+- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-rest-api.yml/badge.svg)](.github/workflows/feature-rest-api.yml)
 
 
 ## Usage
