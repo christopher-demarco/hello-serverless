@@ -1,0 +1,10 @@
+name: database
+on: [push]
+jobs:
+  database-exists:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test for existence
+        run: /bin/false
+      - name: Test for exposed listener
+        run: /bin/false        
