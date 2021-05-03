@@ -1,0 +1,10 @@
+name: Lambda
+on: [push]
+jobs:
+  Lambda-exists:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test that Lambda exists
+        run: /bin/false
+      - name: Test that Lambda is regional
+        run: /bin/false
