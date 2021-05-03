@@ -1,7 +1,0 @@
-name: False
-on: [push]
-jobs:
-  False:
-    runs-on: ubuntu-latest
-    steps:
-      - run: /bin/false

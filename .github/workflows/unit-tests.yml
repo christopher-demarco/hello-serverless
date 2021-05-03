@@ -1,0 +1,9 @@
+name: Unit tests
+on: [push]
+jobs:
+  Pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          cd hello.app
+          make test      
