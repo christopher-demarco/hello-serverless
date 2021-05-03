@@ -16,5 +16,4 @@ jobs:
           [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
           /bin/true # keep going even if build-requirements doesn't exist
       - name: Pytest
-        cd hello.app
-        run: make test
+        run: cd hello.app && make test
