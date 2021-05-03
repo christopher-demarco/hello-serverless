@@ -42,7 +42,7 @@ image would be overkill.
 
 ### devenv
 
-### hello.app
+#### hello.app
 
 A simple python virtualenv: 
 
@@ -55,6 +55,6 @@ pip install --upgrade pip && pip install --upgrade setuptools
 
 ```
 
-### tests
+`make test`
 
-hello.app: `make test`
+
