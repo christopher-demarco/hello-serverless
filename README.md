@@ -2,12 +2,12 @@
 
 Hello, serverless!
 
-Create an AWS Lambda that runs `hello.py`, accessible via API Gateway.
+Create an AWS Lambda that runs `hello.py`, accessible via API Gateway:
 
-Specification:
+(click each badge to view its specification)
 
-- ![unit tests](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)
-- ![rest api](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-rest-api.yml/badge.svg) [Test spec](.github/workflows/feature-rest-api.yml)
+- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)(hello.app/hello_test.py)
+- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-rest-api.yml/badge.svg)](.github/workflows/feature-rest-api.yml)
 
 
 ## Usage
