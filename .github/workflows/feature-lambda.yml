@@ -1,4 +1,4 @@
-name: Lambda
+name: lambda
 on: [push]
 jobs:
   Lambda-exists:

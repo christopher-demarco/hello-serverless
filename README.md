@@ -4,32 +4,32 @@ Continuously deploy a Python ~> 3.6 application that implements a
 trivial CRUD interface to a collection of plaintext files. The client
 gave the following requirements:
 
-- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-rest-api.yml/badge.svg)](.github/workflows/feature-rest-api.yml)
-  the application will present a REST API (HTTPS with TLS v.1.2) as the consumer interface
+- the application will present a REST API (HTTPS with TLS v.1.2) as the consumer interface
+  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-rest-api.yml/badge.svg)](.github/workflows/feature-rest-api.yml)
 
-- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-lambda.yml/badge.svg)](.github/workflows/feature-lambda.yml)
-  it will be deployed using [regional function-as-a-service](terraform/lambda.tf)
+- it will be deployed using [regional function-as-a-service](terraform/lambda.tf)
+  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-lambda.yml/badge.svg)](.github/workflows/feature-lambda.yml)
 
-- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-database.yml/badge.svg)](.github/workflows/feature-database.yml)
-  uses a PostgreSQL database at version ~>10
+- uses a PostgreSQL database at version ~>10
+  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-database.yml/badge.svg)](.github/workflows/feature-database.yml)
 
-- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-cache.yml/badge.svg)](.github/workflows/feature-cache.yml)
-  maintains a cache layer for the database
+- maintains a cache layer for the database
+  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-cache.yml/badge.svg)](.github/workflows/feature-cache.yml)
 
-- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-cache.yml/badge.svg)](.github/workflows/feature-cache.yml)
-  requires storage for uploaded data files with a 30-day retention policy
+- requires storage for uploaded data files with a 30-day retention policy
+  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-cache.yml/badge.svg)](.github/workflows/feature-cache.yml)
 
-- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-healthcheck.yml/badge.svg)](.github/workflows/feature-healthcheck.yml)
-  an automated health check against a test endpoint, scheduled daily
+- an automated health check against a test endpoint, scheduled daily
+  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-healthcheck.yml/badge.svg)](.github/workflows/feature-healthcheck.yml)
 
-- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-logging.yml/badge.svg)](.github/workflows/feature-logging.yml)
-  centralized logging with a 7-day retention policy
+- centralized logging with a 7-day retention policy
+  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-logging.yml/badge.svg)](.github/workflows/feature-logging.yml)
 
-- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-least-privilege.yml/badge.svg)](.github/workflows/feature-least-privilege.yml)
-  least privilege access model
+- least privilege access model
+  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-least-privilege.yml/badge.svg)](.github/workflows/feature-least-privilege.yml)
 
-- [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-database.yml/badge.svg)](.github/workflows/feature-database.yml)
-  the database listener should not be exposed to any other applications or consumers
+- the database listener should not be exposed to any other applications or consumers
+  [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-database.yml/badge.svg)](.github/workflows/feature-database.yml)
 
 
 The app is a single file called [user_uploads.py](app/user_uploads.py]
