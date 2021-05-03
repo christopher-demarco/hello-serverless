@@ -14,6 +14,4 @@ jobs:
           pip install --upgrade pip && pip install --upgrade setuptools
           [[ -e requirements.txt ]] && pip install -r requirements.txt
           [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
-          /bin/true # keep going even if build-requirements doesn't exist
-      - name: Pytest
-        run: cd hello.app && make test
+          make test
