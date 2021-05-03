@@ -33,13 +33,18 @@ gave the following requirements:
 
 
 The app is a single file called [user_uploads.py](app/user_uploads.py]
-[![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)](app/hello_test.py)
+[![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)](app/hello_test.py).
 The app requires db credentials and a client API key used to
 access a remote service; both are only accessible to the application
-from within its runtime [![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)](hello.app/hello_test.py).
+from within its runtime 
+[![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-secrets.yml/badge.svg)](.github/workflows/feature-secrets.yml)
+.
 
-
-
+The application does not require regional redundancy or failover
+capabilities; otherwise the code should be production-ready
+[![](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/feature-production.yml/badge.svg)](.github/workflows/feature-production.yml)
+, with all
+of the considerations implied therein.
 
 
 
