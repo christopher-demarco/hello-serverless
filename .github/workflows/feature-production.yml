@@ -6,5 +6,9 @@ jobs:
     steps:
       - name: Demonstrate good habits
         run: /bin/false
+      - name: Demonstrate ci # e.g. in docs?
+        run: /bin/false
+      - name: Demonstrate cd
+        run: /bin/false
       - name: Provide useful operations tooling
         run: /bin/false
