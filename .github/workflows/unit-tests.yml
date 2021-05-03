@@ -4,12 +4,15 @@ jobs:
   Pytest:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: |
+      - name: Clone repo
+        uses: actions/checkout@v2
+      - name: Setup virtualenv
+        run: |
           cd hello.app
           python3 -mvenv venv
           . ./venv/bin/activate
           pip install --upgrade pip && pip install --upgrade setuptools
           [[ -e requirements.txt ]] && pip install -r requirements.txt
           [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
-          make test
+      - name: Pytest
+        run: make test
