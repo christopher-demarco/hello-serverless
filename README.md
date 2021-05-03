@@ -1,5 +1,7 @@
 # nuvalence-interview
 
+![unit tests](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)
+
 Hello, serverless!
 
 Create an AWS Lambda that runs `hello.py`, accessible via API Gateway.
@@ -52,7 +54,6 @@ python3 -mvenv venv
 pip install --upgrade pip && pip install --upgrade setuptools
 [[ -e requirements.txt ]] && pip install -r requirements.txt
 [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
-
 ```
 
 `make test`
