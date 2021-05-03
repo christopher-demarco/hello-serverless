@@ -3,7 +3,6 @@ on: [push]
 jobs:
   REST-API-exists:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - name: Test that REST API exists
         run: /bin/false
