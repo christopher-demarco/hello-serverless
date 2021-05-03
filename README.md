@@ -1,5 +1,7 @@
 # nuvalence-interview
 
+![unit tests](https://github.com/christopher-demarco/nuvalence-interview/actions/workflows/unit-tests.yml/badge.svg)
+
 Hello, serverless!
 
 Create an AWS Lambda that runs `hello.py`, accessible via API Gateway.
