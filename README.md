@@ -10,31 +10,25 @@ gave the following requirements:
 - it will be deployed using [regional function-as-a-service](terraform/lambda.tf)
   [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-lambda.yml/badge.svg)](.github/workflows/feature-lambda.yml)
 
-- uses a PostgreSQL database at version ~>10
-  [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-database.yml/badge.svg)](.github/workflows/feature-database.yml)
+- TODO uses a PostgreSQL database at version ~>10
 
-- maintains a cache layer for the database
-  [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-cache.yml/badge.svg)](.github/workflows/feature-cache.yml)
+- TODO maintains a cache layer for the database
 
-- requires storage for uploaded data files with a 30-day retention policy
-  [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-cache.yml/badge.svg)](.github/workflows/feature-cache.yml)
+- TODO requires storage for uploaded data files with a 30-day retention policy
 
-- an automated health check against a test endpoint, scheduled daily
-  [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-healthcheck.yml/badge.svg)](.github/workflows/feature-healthcheck.yml)
+- TODO an automated health check against a test endpoint, scheduled daily
 
-- centralized logging with a 7-day retention policy
-  [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-logging.yml/badge.svg)](.github/workflows/feature-logging.yml)
+- TODO centralized logging with a 7-day retention policy
 
-- least privilege access model
-  [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-least-privilege.yml/badge.svg)](.github/workflows/feature-least-privilege.yml)
+- TODO least privilege access model
 
-- the database listener should not be exposed to any other applications or consumers
-  [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-database.yml/badge.svg)](.github/workflows/feature-database.yml)
+- TODO the database listener should not be exposed to any other applications or consumers
 
 
 The app is a single file called [user_uploads.py](app/user_uploads.py]
 [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/unit-tests.yml/badge.svg)](app/hello_test.py).
-The app requires db credentials and a client API key used to
+
+TODO The app requires db credentials and a client API key used to
 access a remote service; both are only accessible to the application
 from within its runtime 
 [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-secrets.yml/badge.svg)](.github/workflows/feature-secrets.yml)
