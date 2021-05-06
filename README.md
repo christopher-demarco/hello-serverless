@@ -65,8 +65,12 @@ tf apply
 cd ..
 ```
 
+# Known issues
 
-## Design
+
+
+
+# Design
 
 This is an attempt at a self-documenting project.
 
@@ -112,6 +116,15 @@ pip install --upgrade pip && pip install --upgrade setuptools
 ```
 
 `make test`
+
+
+## CICD
+
+[Force, if necessary] push to `test`, and expensive integration and
+e2e tests will be run.
+
+All merges to `main` run the full test suite, and upon passing are
+promoted to production.
 
 
 -----
