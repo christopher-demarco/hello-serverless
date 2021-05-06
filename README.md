@@ -4,8 +4,7 @@ Continuously deploy a Python ~> 3.6 application that implements a
 trivial CRUD interface to a collection of plaintext files. The client
 gave the following requirements:
 
-- the application will present a REST API (HTTPS with TLS v.1.2) as the consumer interface
-  [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-rest-api.yml/badge.svg)](.github/workflows/feature-rest-api.yml)
+- TODO the application will present a REST API (HTTPS with TLS v.1.2) as the consumer interface
 
 - it will be deployed using [regional function-as-a-service](terraform/lambda.tf)
   [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-lambda.yml/badge.svg)](.github/workflows/feature-lambda.yml)
@@ -31,12 +30,10 @@ The app is a single file called [user_uploads.py](app/user_uploads.py]
 TODO The app requires db credentials and a client API key used to
 access a remote service; both are only accessible to the application
 from within its runtime 
-[![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-secrets.yml/badge.svg)](.github/workflows/feature-secrets.yml)
 .
 
 The application does not require regional redundancy or failover
 capabilities; otherwise the code should be production-ready
-[![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-production.yml/badge.svg)](.github/workflows/feature-production.yml)
 , with all
 of the considerations implied therein.
 
