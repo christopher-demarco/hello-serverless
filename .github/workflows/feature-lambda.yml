@@ -1,9 +1,5 @@
 name: lambda
-on:
-  push:
-    branches:
-      - test
-      - xyzzy
+on: [push]
 jobs:
   Lambda-exists:
     runs-on: ubuntu-latest
