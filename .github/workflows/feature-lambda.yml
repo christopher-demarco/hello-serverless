@@ -16,6 +16,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-west-2
         run: |
-          aws lambda list-functions
-      - name: Test that Lambda is regional
-        run: /bin/false
+          aws lambda list-functions | jq '.Functions as $f | "hello" | IN($f[])'
