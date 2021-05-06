@@ -68,8 +68,31 @@ cd ..
 
 ## Design
 
-The Python code is bundled as a zipfile for convenience, as a runtime
-image would be overkill.
+This is an attempt at a self-documenting project.
+
+### Intent first. Automate testing your premises.
+
+Code, tooling, workflows, engagement--all should work in harmony
+toward an ultimate goal: If such-and-such tests pass, you're done.
+What are the acceptance criteria by which we're paid? 
+
+We write functional tests first: Because they're
+failing--automatically, via cicd--we know we're not done. We don't
+need to know how to execute them (`/bin/false` is a useful
+placeholder), we can write tests as we go for a service as we figure
+out how to implement it. Bugs, defects, and various problems are
+documented (in tests) as they're encountered.
+
+Now the reader of the README knows how "complete" the project is. All
+of the tooling is in service of the ultimate goal: To make the
+customer feel confident that everything's functioning as expected.
+
+### Lead the reader.
+
+Be friendly and useful. Make it obvious what to do next.
+Link generously.
+Increase detail and verbosity with depth in codebase.
+
 
 
 ## Developing
