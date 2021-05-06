@@ -1,5 +1,8 @@
 name: lambda
-on: [push]
+on:
+  push:
+    branches:
+      - main
 jobs:
   Lambda-exists:
     runs-on: ubuntu-latest
