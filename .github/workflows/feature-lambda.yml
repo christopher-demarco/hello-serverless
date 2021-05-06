@@ -19,6 +19,6 @@ jobs:
           functions=$(aws lambda list-functions)
           found=$(echo $functions | jq '.Functions as $f | "hello" | IN($f[])')
           if [[ $found == "false" ]] ; then
-            echo $found
+            echo $functions
             /bin/false
           fi
