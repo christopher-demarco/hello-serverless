@@ -17,4 +17,4 @@ jobs:
           AWS_DEFAULT_REGION: us-west-2
         run: |
           found=$(aws lambda list-functions | jq '.Functions as $f | "hello" | IN($f[])')
-          [[ $found != "false" ]]
+          [[ $found != "false" ]] || echo $found
