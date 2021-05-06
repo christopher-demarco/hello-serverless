@@ -15,7 +15,6 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}          
         run: |
-          aws help
           aws lambda list-functions
       - name: Test that Lambda is regional
         run: /bin/false
