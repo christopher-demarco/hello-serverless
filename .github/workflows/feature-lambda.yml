@@ -1,5 +1,9 @@
 name: lambda
-on: [push]
+on:
+  push:
+    branches:
+      - test
+      
 jobs:
   Lambda-exists:
     runs-on: ubuntu-latest
@@ -10,10 +14,9 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-west-2
         run: |
-          if [[ $GITHUB_WORKFLOW == "test" ]] ; then
             functions=$(aws lambda list-functions)
             found=$(echo $functions | jq '.Functions as $f | "hello" | IN($f[])')
             if [[ $found == "false" ]] ; then
               echo $functions
               /bin/false
-          fi # job status is retval, so make sure not to goose it
+
