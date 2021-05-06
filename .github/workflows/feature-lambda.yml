@@ -16,4 +16,5 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-west-2
         run: |
-          aws lambda list-functions | jq '.Functions as $f | "hello" | IN($f[])'
+          found=$(aws lambda list-functions | jq '.Functions as $f | "hello" | IN($f[])')
+          [[ $found != "false" ]]
