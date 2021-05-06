@@ -16,9 +16,10 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-west-2
         run: |
+          echo $GITHUB_WORKFLOW @ $GITHUB_REF; /bin/false
           functions=$(aws lambda list-functions)
           found=$(echo $functions | jq '.Functions as $f | "hello" | IN($f[])')
           if [[ $found == "false" ]] ; then
             echo $functions
             /bin/false
-          fi
+          fi # job status is retval, so make sure not to goose it
