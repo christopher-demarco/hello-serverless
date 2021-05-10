@@ -4,8 +4,18 @@ jobs:
   REST-API-exists:
     runs-on: ubuntu-latest
     steps:
-      - name: Test for existence
-        run: /bin/false
+      - name: Test that API exists
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-west-2        
+        run: |
+          apis=$(aws apigateway get-rest-apis)
+          found=$(echo $apis | jq '.items[] | select(.name=="hello_serverless")')
+          if [[ $found == '' ]]; then
+            echo $apis
+            /bin/false
+          fi
       - name: Test for TLS 1.2
         run: /bin/false        
   REST-API-works:

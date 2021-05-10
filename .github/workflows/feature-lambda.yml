@@ -16,7 +16,7 @@ jobs:
         run: |
           functions=$(aws lambda list-functions)
           found=$(echo $functions | jq '.Functions[] | select(.FunctionName=="hello")')
-          if [[ $found == '' ]] ; then
+          if [[ $found == '' ]]; then
             echo $functions
             /bin/false
           fi
