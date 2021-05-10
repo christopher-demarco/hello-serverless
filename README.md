@@ -4,7 +4,8 @@ Continuously deploy a Python ~> 3.6 application that implements a
 trivial CRUD interface to a collection of plaintext files. The client
 gave the following requirements:
 
-- TODO the application will present a REST API (HTTPS with TLS v.1.2) as the consumer interface
+- the application will present a [REST API](terraform/api-gateway.tf)(HTTPS with TLS v.1.2) as the consumer interface
+  [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-rest-api.yml/badge.svg)](.github/workflows/feature-lambda.yml)
 
 - it will be deployed using [regional function-as-a-service](terraform/lambda.tf)
   [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-lambda.yml/badge.svg)](.github/workflows/feature-lambda.yml)

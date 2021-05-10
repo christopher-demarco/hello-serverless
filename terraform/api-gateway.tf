@@ -2,7 +2,7 @@ resource "aws_api_gateway_rest_api" "hello_lambda" {
   body = jsonencode({
     openapi = "3.0.1"
     info = {
-      title = "Hello, Nuvalence!"
+      title = "Hello, serverless!"
       version = "0.2"
     }
     paths = {
@@ -18,7 +18,7 @@ resource "aws_api_gateway_rest_api" "hello_lambda" {
       }
     }
   })
-  name = "hello_nuvalence"
+  name = "hello_serverless"
   endpoint_configuration {
     types = ["REGIONAL"]
   }
