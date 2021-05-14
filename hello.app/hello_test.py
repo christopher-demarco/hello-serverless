@@ -3,4 +3,4 @@ import hello
 def test_main():
     resp = hello.main(None, None)
     assert resp['statusCode'] == 200
-    assert resp['body'] == '"Hello, world!"'
+    assert resp['body'] == '"Hello, serverless!"'
