@@ -84,10 +84,8 @@ python3 -mvenv venv
 pip install --upgrade pip && pip install --upgrade setuptools
 [[ -e requirements.txt ]] && pip install -r requirements.txt
 [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
+make test
 ```
-
-`make test`
-
 
 ## Design
 
