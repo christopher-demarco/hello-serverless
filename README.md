@@ -120,9 +120,8 @@ are namespaced by branch. The branchname is specified in a Terraform
 ### CICD
 
 Build and deploy tasks, and integration and end-to-end (aka
-"functional") tests, are specified as [GitHub
-Workflows](https://docs.github.com/en/actions/learn-github-actions) in
-`[.github/workflows](.github/workflows)`. 
+"functional") tests, are [specified](.github/workflows) as [GitHub
+Workflows](https://docs.github.com/en/actions/learn-github-actions).
 
 Because GitHub Actions are billable, we restrict all automated testing
 to the `test` branch. A person could force-push to that branch if it's
