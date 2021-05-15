@@ -48,12 +48,14 @@ of the considerations implied therein.
   - Terraform ~> 12.x
   - AWS credentials accessible via `AWS_PROFILE`
   
+Additionally, you will need a domain hosted by a Route53 public zone.
+Registering and creating is outside of the scope of this project. The domain to be used is set in the 
+
 ### Create the app bundle
 
 ```
 cd hello.app
 make
-cd ..
 ```
 
 
@@ -61,48 +63,16 @@ cd ..
 
 ```
 cd terraform
-tf init
-tf apply
-cd ..
+terraform init
+terraform apply
 ```
-
-# Known issues
-
-
-
-
-# Design
-
-This is an attempt at a self-documenting project.
-
-### Intent first. Automate testing your premises.
-
-Code, tooling, workflows, engagement--all should work in harmony
-toward an ultimate goal: If such-and-such tests pass, you're done.
-What are the acceptance criteria by which we're paid? 
-
-We write functional tests first: Because they're
-failing--automatically, via cicd--we know we're not done. We don't
-need to know how to execute them (`/bin/false` is a useful
-placeholder), we can write tests as we go for a service as we figure
-out how to implement it. Bugs, defects, and various problems are
-documented (in tests) as they're encountered.
-
-Now the reader of the README knows how "complete" the project is. All
-of the tooling is in service of the ultimate goal: To make the
-customer feel confident that everything's functioning as expected.
-
-### Lead the reader.
-
-Be friendly and useful. Make it obvious what to do next.
-Link generously.
-Increase detail and verbosity with depth in codebase.
-
-
 
 ## Developing
 
 ### devenv
+
+See generally [prerequisites](#prerequisites), above.
+
 
 #### hello.app
 
@@ -119,15 +89,52 @@ pip install --upgrade pip && pip install --upgrade setuptools
 `make test`
 
 
+## Design
+
+### Intent first--automate the testing of your premises.
+
+This is an attempt at a self-documenting project.
+
+Code, tooling, workflows, engagement--all should work in harmony
+toward an ultimate goal: If such-and-such tests pass, you're done.
+What are the acceptance criteria by which we're paid? 
+
+We write functional tests first: Because they're
+failing--automatically, via cicd--we know we're not done. We don't
+need to know how to execute them (`/bin/false` is a useful
+placeholder), we can write tests as we go for a service as we figure
+out how to implement it. Bugs, defects, and various problems are
+documented (in tests) as they're encountered.
+
+Now the reader of the README knows how "complete" the project is. All
+of the tooling is in service of the ultimate goal: To make the
+customer feel confident that everything's functioning as expected.
 
 
-## CICD
+### Namespace by branch
 
-[Force, if necessary] push to `test`, and expensive integration and
-e2e tests will be run.
+Unshareable resources--the DNS name and API Gateway
+[stage](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-deploy-api.html)
+are namespaced by branch. The branchname is specified in a Terraform
+[variable](terraform/vars.tf) `branch`. 
+
+
+### CICD
+
+Build and deploy tasks, and integration and end-to-end (aka
+"functional") tests, are specified as [GitHub
+Workflows](https://docs.github.com/en/actions/learn-github-actions) in
+`[.github/workflows](.github/workflows)`. 
+
+Because GitHub Actions are billable, we restrict all automated testing
+to the `test` branch. A person could force-push to that branch if it's
+diverged from `main`.
 
 All merges to `main` run the full test suite, and upon passing are
 promoted to production.
+
+The `branch` Terraform variable is set automatically in these
+workflows; in the local dev env it defaults to `dev`.
 
 
 -----
