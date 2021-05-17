@@ -39,4 +39,6 @@ jobs:
         run: |
           cd terraform
           URL=$(terraform output URL | sed -e 's/"//g')
-          curl $URL
+          OUT=$(curl -s $URL)
+          [[ $OUT == 'Hello, serverless!' ]]
+          
