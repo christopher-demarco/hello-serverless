@@ -30,3 +30,10 @@ jobs:
           cd terraform
           terraform init
           terraform apply -auto-approve
+      - name: Test
+        env:
+          TF_VAR_domain: ${{ secrets.domain }}
+        run: |
+          cd terraform
+          URL=$(terraform output URL)
+          curl $URL
