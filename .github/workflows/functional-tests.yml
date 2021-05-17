@@ -33,6 +33,7 @@ jobs:
           terraform apply -auto-approve
 
   Test:
+    needs: Build
     runs-on: ubuntu-latest
     steps:
       - name: Clone repo
@@ -53,6 +54,7 @@ jobs:
             /bin/false
           fi
   Cleanup:
+    need: [Build, Test]
     runs-on: ubuntu-latest
     steps:
       - name: Cleanup
