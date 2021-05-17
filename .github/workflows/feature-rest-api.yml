@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: just fucking work already
         env:
-          BARE_REF: $GITHUB_REF
-          TRIMMED_REF: ${GITHUB_REF##*/}
+          BARE_REF: ${GITHUB_REF}
+          TRIMMED_REF: ${{GITHUB_REF##*/}}
         run: |
           echo $GITHUB_REF
           echo ${GITHUB_REF##*/}
