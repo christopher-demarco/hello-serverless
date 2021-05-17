@@ -41,7 +41,7 @@ jobs:
           URL=$(terraform output URL | sed -e 's/"//g')
           OUT=$(curl -s $URL)
           echo $OUT
-          if [[ $OUT == 'Hello, serverless!' ]] ; then
+          if [[ $OUT == '"Hello, serverless!"' ]] ; then
             /bin/true
           else
             /bin/false
