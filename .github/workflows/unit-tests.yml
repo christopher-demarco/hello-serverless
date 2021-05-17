@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Clone repo
         uses: actions/checkout@v2
-      - name: Setup virtualenv
+      - name: Setup virtualenv & run tests
         run: |
           cd hello.app
           python3 -mvenv venv
