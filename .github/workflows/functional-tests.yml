@@ -60,7 +60,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: zipfile
-          path: hello.app/hello.zip
+          path: hello.app
       - name: post
         run: echo ----- && ls -l hello.app && echo -----
       - name: Terraform
