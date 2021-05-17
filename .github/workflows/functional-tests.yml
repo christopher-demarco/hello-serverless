@@ -54,7 +54,7 @@ jobs:
             /bin/false
           fi
   Cleanup:
-    need: [Build, Test]
+    needs: [Build, Test]
     runs-on: ubuntu-latest
     steps:
       - name: Cleanup
