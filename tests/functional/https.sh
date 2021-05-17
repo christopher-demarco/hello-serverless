@@ -2,6 +2,7 @@
 
 set -e
 
+echo 'testing'
 pwd
 ls
 cd ../../terraform

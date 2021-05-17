@@ -42,9 +42,9 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v2
       - name: Test HTTPS
-        run: pwd && ls && tests/functional/https.sh
+        run: tests/functional/https.sh
       - name: Confirm path
-        run: pwd && ls
+        run: echo 'done' && pwd && ls
 
   Cleanup:
     needs: [Build, Test]
