@@ -28,10 +28,10 @@ jobs:
           make
       - name: Terraform
           run: |
-          export TF_VAR_branch=${GITHUB_REF##*/}
-          cd terraform
-          terraform init
-          terraform apply -auto-approve
+            export TF_VAR_branch=${GITHUB_REF##*/}
+            cd terraform
+            terraform init
+            terraform apply -auto-approve
 
   Test:
     needs: Build
