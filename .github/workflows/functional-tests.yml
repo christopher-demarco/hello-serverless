@@ -27,11 +27,11 @@ jobs:
           [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
           make
       - name: Terraform
-          run: |
-            export TF_VAR_branch=${GITHUB_REF##*/}
-            cd terraform
-            terraform init
-            terraform apply -auto-approve
+        run: |
+          export TF_VAR_branch=${GITHUB_REF##*/}
+          cd terraform
+          terraform init
+          terraform apply -auto-approve
 
   Test:
     needs: Build
