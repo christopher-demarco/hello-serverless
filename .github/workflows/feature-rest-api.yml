@@ -10,9 +10,12 @@ jobs:
     steps:
       - name: just fucking work already
         env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           MF: ${{ env.GITHUB_REF }}
         run: |
-          echo $MF
+          echo key is $AWS_ACCESS_KEY_ID
+          echo fuckyou is $MF
+          echo github_ref is ${GITHUB_REF##*/}
       # - name: Clone repo
       #   uses: actions/checkout@v2
       # - name: Package app
