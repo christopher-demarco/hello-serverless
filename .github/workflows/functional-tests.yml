@@ -15,8 +15,10 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone repo
-        uses: actions/checkout@v2
+      - name: noop
+        run: /bin/true
+  #     - name: Clone repo
+  #       uses: actions/checkout@v2
   #     - name: Package app
   #       run: |
   #         cd hello.app

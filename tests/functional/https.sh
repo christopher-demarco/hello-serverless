@@ -2,6 +2,8 @@
 
 set -e
 
+pwd
+ls
 cd ../../terraform
 terraform init
 
