@@ -38,10 +38,19 @@ jobs:
           TF_VAR_domain: ${{ secrets.domain }}
         run: |
           cd terraform
-          URL=$(terraform output URLL | sed -e 's/"//g')
+          URL=$(terraform output URL | sed -e 's/"//g')
           OUT=$(curl -s $URL)
           if [[ $OUT == '"Hello, serverless!"' ]] ; then
             /bin/true
           else
             /bin/false
           fi
+      - name: Cleanup
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-west-2
+          TF_VAR_domain: ${{ secrets.domain }}
+        run: |
+          cd terraform
+          terraform destroy -auto-approve
