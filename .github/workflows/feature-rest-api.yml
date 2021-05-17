@@ -8,14 +8,6 @@ jobs:
   REST-API-exists:
     runs-on: ubuntu-latest
     steps:
-      - name: just fucking work already
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          MF: ${{ env.GITHUB_REF }}
-        run: |
-          echo key is $AWS_ACCESS_KEY_ID
-          echo fuckyou is $MF
-          echo github_ref is ${GITHUB_REF##*/}
       - name: Clone repo
         uses: actions/checkout@v2
       - name: Package app
@@ -34,7 +26,7 @@ jobs:
           AWS_DEFAULT_REGION: us-west-2
           TF_VAR_domain: ${{ secrets.domain }}
         run: |
-          export TF_VAR_domain=${GITHUB_REF##*/}
+          export TF_VAR_branch=${GITHUB_REF##*/}
           cd terraform
           terraform init
           terraform apply -auto-approve
