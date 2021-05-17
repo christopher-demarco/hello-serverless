@@ -49,7 +49,11 @@ of the considerations implied therein.
   - AWS credentials accessible via `AWS_PROFILE`
   
 Additionally, you will need a domain hosted by a Route53 public zone.
-Registering and creating is outside of the scope of this project. The domain to be used is set in the 
+Registering and creating is outside of the scope of this project. The
+domain to be used is read from the `TF_VAR_domain` env var--set by
+hand in development, and via a [GitHub
+Secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
+in CICD.
 
 ### Create the app bundle
 
@@ -64,7 +68,7 @@ make
 ```
 cd terraform
 terraform init
-terraform apply
+TF_VAR_domain=your.domain terraform apply
 ```
 
 ## Developing
@@ -116,6 +120,9 @@ Unshareable resources--the DNS name and API Gateway
 are namespaced by branch. The branchname is specified in a Terraform
 [variable](terraform/vars.tf) `branch`. 
 
+On the local dev machine, this is set to `dev`; override by setting
+the env var `TF_VAR_branch`.
+
 
 ### CICD
 
@@ -133,6 +140,11 @@ promoted to production.
 The `branch` Terraform variable is set automatically in these
 workflows; in the local dev env it defaults to `dev`.
 
+#### AWS credentials
+
+Deploy tasks, integration tests, and end-to-end tests require AWS
+credentials to be set as [GitHub
+Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets).
 
 -----
 Copyright (c) 2021 Christopher DeMarco. All rights reserved.
