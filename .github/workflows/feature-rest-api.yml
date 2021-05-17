@@ -17,6 +17,8 @@ jobs:
         run: |
           echo $BARE_REF
           echo $TRIMMED_REF
+          echo $BARE_WITH_ENV
+          echo $TRIMMED_WITH_ENV
       # - name: Clone repo
       #   uses: actions/checkout@v2
       # - name: Package app
