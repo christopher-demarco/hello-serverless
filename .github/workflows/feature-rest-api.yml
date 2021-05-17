@@ -17,29 +17,3 @@ jobs:
           cd terraform
           terraform init
           terraform apply -auto-approve
-      # - name: Test that API exists
-      #   env:
-      #   
-      #   run: |
-      #     apis=$(aws apigateway get-rest-apis)
-      #     found=$(echo $apis | jq '.items[] | select(.name=="hello_serverless")')
-      #     if [[ $found == '' ]]; then
-      #       echo $apis
-      #       /bin/false
-          # else
-          #   id=$(echo found | jq .id)
-          #   deployments=$(aws apigateway get-deployments --rest-api-id $id)
-          #   found=echo $deployments | jq '.items[]'
-          #   if [[ $found == '' ]]; then
-          #     echo $deployments
-          #     /bin/false
-          #   fi
-          fi
-  #     - name: Test for TLS 1.2
-  #       run: /bin/false        
-  # REST-API-works:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Test that health endpoint exists
-  #       run: /bin/false
-
