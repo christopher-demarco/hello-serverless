@@ -40,5 +40,9 @@ jobs:
           cd terraform
           URL=$(terraform output URL | sed -e 's/"//g')
           OUT=$(curl -s $URL)
-          [[ $OUT == 'Hello, serverless!' ]]
-          
+          echo $OUT
+          if [[ $OUT == 'Hello, serverless!' ]] ; then
+            /bin/true
+          else
+            /bin/false
+          fi
