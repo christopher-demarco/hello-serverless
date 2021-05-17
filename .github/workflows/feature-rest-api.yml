@@ -40,4 +40,4 @@ jobs:
           cd terraform
           URL=$(terraform output URL)
           echo $URL
-          curl $URL          
+          echo curl $URL          
