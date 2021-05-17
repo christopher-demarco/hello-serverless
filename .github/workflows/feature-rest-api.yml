@@ -12,9 +12,9 @@ jobs:
         env:
           BARE_REF: ${GITHUB_REF}
           TRIMMED_REF: ${{GITHUB_REF##*/}}
+          BARE_WITH_ENV: ${env.GITHUB_REF}
+          TRIMMED_WITH_ENV: ${{env.GITHUB_REF##*/}}
         run: |
-          echo $GITHUB_REF
-          echo ${GITHUB_REF##*/}
           echo $BARE_REF
           echo $TRIMMED_REF
       # - name: Clone repo
