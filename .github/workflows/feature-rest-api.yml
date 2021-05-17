@@ -16,25 +16,25 @@ jobs:
           echo key is $AWS_ACCESS_KEY_ID
           echo fuckyou is $MF
           echo github_ref is ${GITHUB_REF##*/}
-      # - name: Clone repo
-      #   uses: actions/checkout@v2
-      # - name: Package app
-      #   run: |
-      #     cd hello.app
-      #     python3 -mvenv venv
-      #     . ./venv/bin/activate
-      #     pip install --upgrade pip && pip install --upgrade setuptools
-      #     [[ -e requirements.txt ]] && pip install -r requirements.txt
-      #     [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
-      #     make
-      # - name: Build everything
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     AWS_DEFAULT_REGION: us-west-2
-      #     TF_VAR_domain: ${{ secrets.domain }}
-      #     TF_VAR_branch: ${GITHUB_REF##*/}
-      #   run: |
-      #     cd terraform
-      #     terraform init
-      #     terraform apply -auto-approve
+      - name: Clone repo
+        uses: actions/checkout@v2
+      - name: Package app
+        run: |
+          cd hello.app
+          python3 -mvenv venv
+          . ./venv/bin/activate
+          pip install --upgrade pip && pip install --upgrade setuptools
+          [[ -e requirements.txt ]] && pip install -r requirements.txt
+          [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
+          make
+      - name: Build everything
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-west-2
+          TF_VAR_domain: ${{ secrets.domain }}
+        run: |
+          export TF_VAR_domain=${GITHUB_REF##*/}
+          cd terraform
+          terraform init
+          terraform apply -auto-approve
