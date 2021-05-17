@@ -55,6 +55,12 @@ hand in development, and via a [GitHub
 Secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
 in CICD.
 
+
+**WARNING**: The S3 bucket where Terraform state is stored is hard-coded.
+Create a bucket and specify it [in the codebase](terraform/aws.tf)
+before running.
+
+
 ### Create the app bundle
 
 ```
@@ -67,7 +73,7 @@ make
 
 ```
 cd terraform
-terraform init
+terraform init # this is only necessary the first time
 TF_VAR_domain=your.domain terraform apply
 ```
 
