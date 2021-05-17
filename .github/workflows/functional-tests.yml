@@ -15,25 +15,23 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-      - name: noop
-        run: /bin/true
-  #     - name: Clone repo
-  #       uses: actions/checkout@v2
-  #     - name: Package app
-  #       run: |
-  #         cd hello.app
-  #         python3 -mvenv venv
-  #         . ./venv/bin/activate
-  #         pip install --upgrade pip && pip install --upgrade setuptools
-  #         [[ -e requirements.txt ]] && pip install -r requirements.txt
-  #         [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
-  #         make
-  #     - name: Terraform
-  #       run: |
-  #         export TF_VAR_branch=${GITHUB_REF##*/}
-  #         cd terraform
-  #         terraform init
-  #         terraform apply -auto-approve
+      - name: Clone repo
+        uses: actions/checkout@v2
+      - name: Package app
+        run: |
+          cd hello.app
+          python3 -mvenv venv
+          . ./venv/bin/activate
+          pip install --upgrade pip && pip install --upgrade setuptools
+          [[ -e requirements.txt ]] && pip install -r requirements.txt
+          [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
+          make
+      - name: Terraform
+        run: |
+          export TF_VAR_branch=${GITHUB_REF##*/}
+          cd terraform
+          terraform init
+          terraform apply -auto-approve
 
   Test:
     needs: Build
@@ -43,8 +41,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Test HTTPS
         run: tests/functional/https.sh
-      - name: Confirm path
-        run: echo 'done' && pwd && ls
 
   Cleanup:
     needs: [Build, Test]
@@ -52,7 +48,8 @@ jobs:
     steps:
       - name: Clone repo
         uses: actions/checkout@v2
-      - name: 
+      - name: Terraform
         run: |
           cd terraform
+          terraform init
           terraform destroy -auto-approve
