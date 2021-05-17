@@ -13,7 +13,6 @@ jobs:
           BARE_REF: ${GITHUB_REF}
           TRIMMED_REF: ${{GITHUB_REF##*/}}
           BARE_WITH_ENV: ${env.GITHUB_REF}
-          TRIMMED_WITH_ENV: ${{env.GITHUB_REF##*/}}
         run: |
           echo $BARE_REF
           echo $TRIMMED_REF
