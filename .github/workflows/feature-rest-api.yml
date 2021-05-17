@@ -38,6 +38,5 @@ jobs:
           TF_VAR_domain: ${{ secrets.domain }}
         run: |
           cd terraform
-          URL=$(terraform output URL)
-          echo $URL
-          echo curl $URL          
+          URL=$(terraform output URL | sed -e 's/"//g')
+          curl $URL
