@@ -32,8 +32,11 @@ jobs:
           terraform apply -auto-approve
       - name: Test
         env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-west-2
           TF_VAR_domain: ${{ secrets.domain }}
         run: |
           cd terraform
           URL=$(terraform output URL)
-          curl $URL
+          curl $URL          
