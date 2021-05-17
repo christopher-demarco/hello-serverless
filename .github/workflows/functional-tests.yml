@@ -55,14 +55,14 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v2
       - name: pre
-        run: pwd && ls hello.app
+        run: pwd && ls && ls hello.app
       - name: Retrieve zipfile
         uses: actions/download-artifact@v2
         with:
           name: zipfile
           path: hello.app/hello.zip
       - name: post
-        run: pwd && ls hello.app
+        run: pwd && ls && ls hello.app
       - name: Terraform
         run: |
           export TF_VAR_branch=${GITHUB_REF##*/}
