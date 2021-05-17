@@ -10,7 +10,16 @@ jobs:
     steps:
       - name: Clone repo
         uses: actions/checkout@v2
-      - name: Build
+      - name: Package app
+        run: |
+          cd hello.app
+          python3 -mvenv venv
+          . ./venv/bin/activate
+          pip install --upgrade pip && pip install --upgrade setuptools
+          [[ -e requirements.txt ]] && pip install -r requirements.txt
+          [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
+          make
+      - name: Build everything
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
