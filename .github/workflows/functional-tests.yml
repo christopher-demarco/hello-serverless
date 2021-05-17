@@ -65,6 +65,7 @@ jobs:
         run: pwd && ls hello.app
       - name: Terraform
         run: |
+          export TF_VAR_branch=${GITHUB_REF##*/}
           cd terraform
           terraform init
           terraform destroy -auto-approve
