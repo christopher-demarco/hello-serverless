@@ -12,11 +12,11 @@ env:
   TF_VAR_domain: ${{ secrets.domain }}
 
 jobs:
-  # Build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Clone repo
-  #       uses: actions/checkout@v2
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
   #     - name: Package app
   #       run: |
   #         cd hello.app
