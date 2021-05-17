@@ -9,9 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: just fucking work already
+        env:
+          BARE_REF: $GITHUB_REF
+          TRIMMED_REF: ${GITHUB_REF##*/}
         run: |
           echo $GITHUB_REF
           echo ${GITHUB_REF##*/}
+          echo $BARE_REF
+          echo $TRIMMED_REF
       # - name: Clone repo
       #   uses: actions/checkout@v2
       # - name: Package app
