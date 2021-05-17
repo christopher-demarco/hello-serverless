@@ -2,7 +2,6 @@ name: Functional tests
 on:
   push:
     branches:
-      - rest-api
       - test
       - main
 
@@ -32,8 +31,6 @@ jobs:
         with:
           name: zipfile
           path: hello.app/hello.zip
-      - name: post
-        run: echo ----- && ls -l hello.app && echo -----
       - name: Terraform
         run: |
           export TF_VAR_branch=${GITHUB_REF##*/}
@@ -61,8 +58,6 @@ jobs:
         with:
           name: zipfile
           path: hello.app
-      - name: post
-        run: echo ----- && ls -l hello.app && echo -----
       - name: Terraform
         run: |
           export TF_VAR_branch=${GITHUB_REF##*/}
