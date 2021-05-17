@@ -46,6 +46,7 @@ jobs:
           TF_VAR_domain: ${{ secrets.domain }}
         run: |
           cd terraform
+          terraform init
           URL=$(terraform output URL | sed -e 's/"//g')
           OUT=$(curl -s $URL)
           if [[ $OUT == '"Hello, serverless!"' ]] ; then
