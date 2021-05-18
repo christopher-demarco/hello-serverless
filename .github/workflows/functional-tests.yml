@@ -58,7 +58,7 @@ jobs:
           tests/integration/python.sh
 
   Cleanup:
-    needs: [Build, Test]
+    needs: [Build, Test_REST_API, Test_function-as-a-service]
     runs-on: ubuntu-latest
     steps:
       - name: Clone repo
