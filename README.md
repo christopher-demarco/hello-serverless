@@ -1,12 +1,13 @@
 # hello, serverless
 
-[![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml/badge.svg)](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml)
-
 Continuously deploy a Python ~> 3.6 application that implements a
 trivial CRUD interface to a collection of plaintext files. The
-following requirements are specified:
+following requirements are specified; click into the test badge below
+to find each feature's test status:
 
-- DONE The application will present a [REST API](terraform/api-gateway.tf)(HTTPS with TLS v.1.2) as the consumer interface
+[![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml/badge.svg)](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml)
+
+- The application will present a [REST API](terraform/api-gateway.tf)(HTTPS with TLS v.1.2) as the consumer interface
   [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-rest-api.yml/badge.svg)](.github/workflows/feature-lambda.yml)
 
 - DONE it will be deployed using [regional function-as-a-service](terraform/lambda.tf)
