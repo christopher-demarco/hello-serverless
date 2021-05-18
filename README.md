@@ -1,6 +1,6 @@
 # hello, serverless
 
-[](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml/badge.svg)
+![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml/badge.svg)
 
 Continuously deploy a Python ~> 3.6 application that implements a
 trivial CRUD interface to a collection of plaintext files. The
