@@ -3,7 +3,7 @@
 import json
 
 def main(event, context):
-    body = json.dumps(f"Hello, world!")
+    body = json.dumps(f"Hello, serverless!")
     return {
         'statusCode': 200,
         'body': body

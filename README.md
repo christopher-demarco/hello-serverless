@@ -1,13 +1,15 @@
 # hello, serverless
 
 Continuously deploy a Python ~> 3.6 application that implements a
-trivial CRUD interface to a collection of plaintext files. The client
-gave the following requirements:
+trivial CRUD interface to a collection of plaintext files. The
+following requirements are specified; click into the test badge below
+to find each feature's test status:
 
-- TODO the application will present a REST API (HTTPS with TLS v.1.2) as the consumer interface
+[![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml/badge.svg)](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml)
 
-- it will be deployed using [regional function-as-a-service](terraform/lambda.tf)
-  [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/feature-lambda.yml/badge.svg)](.github/workflows/feature-lambda.yml)
+- The application will present a [REST API](terraform/api-gateway.tf)(HTTPS with TLS v.1.2) as the consumer interface
+
+- It will be deployed using [regional function-as-a-service](terraform/lambda.tf)
 
 - TODO uses a PostgreSQL database at version ~>10
 
@@ -47,12 +49,24 @@ of the considerations implied therein.
   - Terraform ~> 12.x
   - AWS credentials accessible via `AWS_PROFILE`
   
+Additionally, you will need a domain hosted by a Route53 public zone.
+Registering and creating is outside of the scope of this project. The
+domain to be used is read from the `TF_VAR_domain` env var--set by
+hand in development, and via a [GitHub
+Secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
+in CICD.
+
+
+**WARNING**: The S3 bucket where Terraform state is stored is hard-coded.
+Create a bucket and specify it [in the codebase](terraform/aws.tf)
+before running.
+
+
 ### Create the app bundle
 
 ```
 cd hello.app
 make
-cd ..
 ```
 
 
@@ -60,21 +74,35 @@ cd ..
 
 ```
 cd terraform
-tf init
-tf apply
-cd ..
+terraform init # this is only necessary the first time
+TF_VAR_domain=your.domain terraform apply
 ```
 
-# Known issues
+## Developing
+
+### devenv
+
+See generally [prerequisites](#prerequisites), above.
 
 
+#### hello.app
 
+A simple python virtualenv: 
 
-# Design
+```
+python3 -mvenv venv
+. ./venv/bin/activate
+pip install --upgrade pip && pip install --upgrade setuptools
+[[ -e requirements.txt ]] && pip install -r requirements.txt
+[[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
+make test
+```
+
+## Design
+
+### Intent first--automate the testing of your premises.
 
 This is an attempt at a self-documenting project.
-
-### Intent first. Automate testing your premises.
 
 Code, tooling, workflows, engagement--all should work in harmony
 toward an ultimate goal: If such-and-such tests pass, you're done.
@@ -91,43 +119,39 @@ Now the reader of the README knows how "complete" the project is. All
 of the tooling is in service of the ultimate goal: To make the
 customer feel confident that everything's functioning as expected.
 
-### Lead the reader.
 
-Be friendly and useful. Make it obvious what to do next.
-Link generously.
-Increase detail and verbosity with depth in codebase.
+### Namespace by branch
 
+Unshareable resources--the DNS name and API Gateway
+[stage](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-deploy-api.html)
+are namespaced by branch. The branchname is specified in a Terraform
+[variable](terraform/vars.tf) `branch`. 
 
-
-## Developing
-
-### devenv
-
-#### hello.app
-
-A simple python virtualenv: 
-
-```
-python3 -mvenv venv
-. ./venv/bin/activate
-pip install --upgrade pip && pip install --upgrade setuptools
-[[ -e requirements.txt ]] && pip install -r requirements.txt
-[[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
-```
-
-`make test`
+On the local dev machine, this is set to `dev`; override by setting
+the env var `TF_VAR_branch`.
 
 
+### CICD
 
+Build and deploy tasks, and integration and end-to-end (aka
+"functional") tests, are [specified](.github/workflows) as [GitHub
+Workflows](https://docs.github.com/en/actions/learn-github-actions).
 
-## CICD
-
-[Force, if necessary] push to `test`, and expensive integration and
-e2e tests will be run.
+Because GitHub Actions are billable, we restrict all automated testing
+to the `test` branch. A person could force-push to that branch if it's
+diverged from `main`.
 
 All merges to `main` run the full test suite, and upon passing are
 promoted to production.
 
+The `branch` Terraform variable is set automatically in these
+workflows; in the local dev env it defaults to `dev`.
+
+#### AWS credentials
+
+Deploy tasks, integration tests, and end-to-end tests require AWS
+credentials to be set as [GitHub
+Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets).
 
 -----
 Copyright (c) 2021 Christopher DeMarco. All rights reserved.
