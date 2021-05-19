@@ -83,10 +83,8 @@ service limits. Caveat emptor!
 Upload the certificate to AWS ACM. Development and CICD workflows will
 re-use this certificate for all deployments.
 
-The ACM certificate identifier is read from the `TF_VAR_cert` env
-var--set by hand in development, and via a [GitHub
-Secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
-in CICD.
+The ACM certificate identifier is looked up via the `TF_VAR_domain`
+[variable](#Custom-domain).
 
 
 #### Terraform state bucket
