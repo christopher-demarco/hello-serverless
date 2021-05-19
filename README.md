@@ -75,9 +75,13 @@ it may be impractical to use it for development. Therefore [Let's
 Encrypt](https://letsencrypt.org) is recommended instead.
 
 You will need to create a wildcard cert for `*.custom.domain` using
-Let's Encrypt or a SSL provider of your choice.
+Let's Encrypt or a SSL provider of your choice. You may want to test
+with a fake/staging certificate before committing to a
+production-grade cert, to prevent incurring cost or running afoul of
+service limits. Caveat emptor!
 
-Upload the certificate to AWS ACM.
+Upload the certificate to AWS ACM. Development and CICD workflows will
+re-use this certificate for all deployments.
 
 The ACM certificate identifier is read from the `TF_VAR_cert` env
 var--set by hand in development, and via a [GitHub
