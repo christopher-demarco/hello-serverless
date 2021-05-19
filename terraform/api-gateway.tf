@@ -1,8 +1,11 @@
 # Create an API Gateway to pass traffic to the Lambda
+
 ## Create the bare object
 resource "aws_api_gateway_rest_api" "hello" {
   name = "hello"
 }
+
+
 ## Permit the Lambda to access it
 resource "aws_lambda_permission" "hello" {
    statement_id  = "AllowAPIGatewayInvoke"
@@ -11,6 +14,8 @@ resource "aws_lambda_permission" "hello" {
    principal     = "apigateway.amazonaws.com"
    source_arn = "${aws_api_gateway_rest_api.hello.execution_arn}/*/*"
 }
+
+
 ## Create the proxy
 resource "aws_api_gateway_method" "hello" {
   rest_api_id = aws_api_gateway_rest_api.hello.id
@@ -27,7 +32,9 @@ resource "aws_api_gateway_integration" "hello_root" {
   type                    = "AWS_PROXY"
   uri                     = aws_lambda_function.hello.invoke_arn
 }
-## And finally deploy it
+
+
+## Deploy the API Gateway so that it's active
 resource "aws_api_gateway_deployment" "hello" {
   depends_on = [
     # aws_api_gateway_integration.hello,
@@ -38,5 +45,7 @@ resource "aws_api_gateway_deployment" "hello" {
 }
 
 
-# Output the URL for accessing it
-output "URL" { value = aws_api_gateway_deployment.hello.invoke_url }
+## Output the API GW endpoint
+output "api-gw-url" {
+  value = aws_api_gateway_deployment.hello.invoke_url
+}
