@@ -37,7 +37,6 @@ resource "aws_api_gateway_integration" "hello_root" {
 ## Deploy the API Gateway so that it's active
 resource "aws_api_gateway_deployment" "hello" {
   depends_on = [
-    # aws_api_gateway_integration.hello,
     aws_api_gateway_integration.hello_root
   ]
   rest_api_id = aws_api_gateway_rest_api.hello.id
