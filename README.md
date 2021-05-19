@@ -70,8 +70,10 @@ in CICD.
 
 #### SSL certificate
 
-Because Amazon's ACM certificate infrastructure is grossly throttled,
-it may be impractical to use it for development. Therefore [Let's
+Because [Amazon's ACM certificate infrastructure is grossly,
+inconsistently, and secretly
+throttled](https://github.com/aws/aws-cdk/issues/5889) (et al.), it
+may be impractical to use it for development. Therefore [Let's
 Encrypt](https://letsencrypt.org) is recommended instead.
 
 You will need to create a wildcard cert for `*.custom.domain` using
