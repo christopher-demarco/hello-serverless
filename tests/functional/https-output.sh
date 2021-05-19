@@ -5,7 +5,7 @@ set -e
 cd terraform
 terraform init
 
-URL=$(terraform output URL | sed -e 's/"//g')
+URL=$(terraform output custom-url | sed -e 's/"//g')
 OUT=$(curl -s $URL)
 cd ..
 if [[ $OUT == '"Hello, serverless!"' ]] ; then

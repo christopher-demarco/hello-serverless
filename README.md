@@ -35,31 +35,73 @@ from within its runtime
 .
 
 The application does not require regional redundancy or failover
-capabilities; otherwise the code should be production-ready
-, with all
+capabilities; otherwise the code should be production-ready , with all
 of the considerations implied therein.
 
 
 
 ## Usage
 
+The project is intended to be deployed via GitHub CICD. Fork this
+repo and *TODO TBD*.
+
+
 ### Prerequisites
+
+#### GitHub account
+
+If you're forking the repo, you'll need a GitHub account.
+
+
+#### Custom domain
+
+The application is hosted at a domain served by a Route53 public zone.
+Registering a domain and creating the zone is outside of the scope of
+this project.
+
+Throughout this documentation we refer to your custom domain as
+`custom.domain`; substitute your actual value.
+
+The value of the custom domain is read from the `TF_VAR_domain` env
+var--set by hand in development, and via a [GitHub
+Secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
+in CICD.
+
+
+#### SSL certificate
+
+Because [Amazon's ACM certificate infrastructure is grossly,
+inconsistently, and secretly
+throttled](https://github.com/aws/aws-cdk/issues/5889), it
+may be impractical to use it for development. Therefore [Let's
+Encrypt](https://letsencrypt.org) is recommended instead.
+
+You will need to create a wildcard cert for `*.custom.domain` using
+Let's Encrypt or a SSL provider of your choice. You may want to test
+with a fake/staging certificate before committing to a
+production-grade cert, to prevent incurring cost or running afoul of
+service limits. Caveat emptor!
+
+Upload the certificate to AWS ACM. Development and CICD workflows will
+re-use this certificate for all deployments.
+
+The ACM certificate identifier is looked up via the `TF_VAR_domain`
+[variable](#Custom-domain).
+
+
+#### Terraform state bucket
+
+**WARNING**: The S3 bucket where Terraform state is stored is hard-coded.
+Create a bucket and specify it [in the codebase](terraform/aws.tf)
+before running.
+
+
+#### Dev / CICD environment
 
   - Python ~> 3.6.x
   - Terraform ~> 12.x
   - AWS credentials accessible via `AWS_PROFILE`
   
-Additionally, you will need a domain hosted by a Route53 public zone.
-Registering and creating is outside of the scope of this project. The
-domain to be used is read from the `TF_VAR_domain` env var--set by
-hand in development, and via a [GitHub
-Secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
-in CICD.
-
-
-**WARNING**: The S3 bucket where Terraform state is stored is hard-coded.
-Create a bucket and specify it [in the codebase](terraform/aws.tf)
-before running.
 
 
 ### Create the app bundle
