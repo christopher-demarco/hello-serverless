@@ -39,21 +39,14 @@ capabilities; otherwise the code should be production-ready , with all
 of the considerations implied therein.
 
 
+## Prerequisites
 
-## Usage
-
-The project is intended to be deployed via GitHub CICD. Fork this
-repo and *TODO TBD*.
-
-
-### Prerequisites
-
-#### GitHub account
+### GitHub account
 
 If you're forking the repo, you'll need a GitHub account.
 
 
-#### Custom domain
+### Custom domain
 
 The application is hosted at a domain served by a Route53 public zone.
 Registering a domain and creating the zone is outside of the scope of
@@ -68,7 +61,7 @@ Secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
 in CICD.
 
 
-#### SSL certificate
+### SSL certificate
 
 Because [Amazon's ACM certificate infrastructure is grossly,
 inconsistently, and secretly
@@ -89,19 +82,24 @@ The ACM certificate identifier is looked up via the `TF_VAR_domain`
 [variable](#Custom-domain).
 
 
-#### Terraform state bucket
+### Terraform state bucket
 
-**WARNING**: The S3 bucket where Terraform state is stored is hard-coded.
+**BUG**: The S3 bucket where Terraform state is stored is hard-coded.
 Create a bucket and specify it [in the codebase](terraform/aws.tf)
 before running.
 
 
-#### Dev / CICD environment
+### Dev / CICD environment
 
   - Python ~> 3.6.x
   - Terraform ~> 12.x
   - AWS credentials accessible via `AWS_PROFILE`
   
+
+## Usage
+
+The project is intended to be deployed via GitHub CICD. Fork this
+repo and *TODO TBD*.
 
 
 ### Create the app bundle
@@ -120,7 +118,11 @@ terraform init # this is only necessary the first time
 TF_VAR_domain=your.domain terraform apply
 ```
 
+
 ## Developing
+
+Create & push tags using [bin/create-tag.sh](bin/create-tag.sh).
+
 
 ### devenv
 
@@ -139,6 +141,7 @@ pip install --upgrade pip && pip install --upgrade setuptools
 [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
 make test
 ```
+
 
 ## Design
 
