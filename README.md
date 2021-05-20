@@ -1,9 +1,10 @@
 # hello, serverless
 
-Continuously deploy to AWS a Python ~> 3.6 application that implements
-a trivial CRUD interface to a collection of plaintext files. The
-following requirements are specified; click into the test badge below
-to find each feature's test status:
+[Continuously deploy](.github/workflows/deploy-main.yml) to AWS a
+Python ~> 3.6 application that implements a trivial CRUD interface to
+a collection of plaintext files. The following requirements are
+specified; click into the test badge below to find each feature's test
+status:
 
 [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml/badge.svg)](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml)
 
