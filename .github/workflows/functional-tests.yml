@@ -12,6 +12,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_DEFAULT_REGION: us-west-2
   TF_VAR_domain: ${{ secrets.domain }}
+  TF_VAR_state_bucket : ${{ secrets.state_bucket }}
 
 jobs:
   Build:
@@ -35,10 +36,10 @@ jobs:
           path: hello.app/hello.zip
       - name: Terraform
         run: |
-          export TF_VAR_branch=${GITHUB_REF##*/}
+          export TF_VAR_environment=${GITHUB_REF##*/}
           cd terraform
-          terraform init
-          terraform apply -auto-approve
+          terragrunt init
+          terragrunt apply -auto-approve
 
   Test_REST_API:
     needs: Build
@@ -74,7 +75,7 @@ jobs:
           path: hello.app
       - name: Terraform
         run: |
-          export TF_VAR_branch=${GITHUB_REF##*/}
+          export TF_VAR_environment=${GITHUB_REF##*/}
           cd terraform
-          terraform init
-          terraform destroy -auto-approve
+          terragrunt init
+          terragrunt destroy -auto-approve

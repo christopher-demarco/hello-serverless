@@ -58,7 +58,7 @@ Throughout this documentation we refer to your custom domain as
 The value of the custom domain is read from the `TF_VAR_domain` env
 var--set by hand in development, and via a [GitHub
 Secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
-in CICD.
+`DOMAIN` in CICD.
 
 
 ### SSL certificate
@@ -84,8 +84,11 @@ The ACM certificate identifier is looked up via the `TF_VAR_domain`
 
 ### Terraform state bucket
 
-Terraform state is stored in S3. You will need to create a bucket and
-specify it via the `TF_VAR_state_bucket` variable.
+Terraform state is stored in S3. You will need to create a bucket;
+specify it via the `TF_VAR_state_bucket` variable in the dev
+environment and as a [GitHub
+Secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
+`STATE_BUCKET` in CICD.
 
 
 ### Dev / CICD environment
@@ -224,7 +227,8 @@ workflows; in the local dev env it defaults to `dev`.
 
 Deploy tasks, integration tests, and end-to-end tests require AWS
 credentials to be set as [GitHub
-Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets).
+Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets)
+`AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
 -----
 Copyright (c) 2021 Christopher DeMarco. All rights reserved.
