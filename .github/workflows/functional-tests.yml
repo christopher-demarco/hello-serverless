@@ -39,10 +39,10 @@ jobs:
           export TF_VAR_environment=${GITHUB_REF##*/}
           cd terraform
           curl -L -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
-          mv terragrunt{_linux_amd64,}
-          chmod +x terragrunt
-          ./terragrunt init
-          ./terragrunt apply -auto-approve
+          sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
+          chmod +x /usr/local/bin/terragrunt
+          terragrunt init
+          terragrunt apply -auto-approve
 
   Test_REST_API:
     needs: Build
@@ -53,14 +53,14 @@ jobs:
       - name: Test that the API GW works
         run: |
           curl -L -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
-          mv terragrunt{_linux_amd64,}
-          chmod +x terragrunt          
+          sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
+          chmod +x /usr/local/bin/terragrunt
           tests/integration/api-gw.sh
       - name: Test HTTPS
         run: |
           curl -L -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
-          mv terragrunt{_linux_amd64,}
-          chmod +x terragrunt          
+          sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
+          chmod +x /usr/local/bin/terragrunt
           tests/functional/https-output.sh
 
   Test_function-as-a-service:
@@ -90,7 +90,7 @@ jobs:
           export TF_VAR_environment=${GITHUB_REF##*/}
           cd terraform
           curl -L -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
-          mv terragrunt{_linux_amd64,}
-          chmod +x terragrunt
+          sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
+          chmod +x /usr/local/bin/terragrunt
           terragrunt init
           terragrunt destroy -auto-approve
