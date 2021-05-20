@@ -37,9 +37,10 @@ jobs:
       - name: Terraform
         run: |
           sudo snap install terragrunt
+          terragrunt --version
+          terraform --version
           export TF_VAR_environment=${GITHUB_REF##*/}
           cd terraform
-          pwd && ls -l
           terragrunt init
           terragrunt apply -auto-approve
 
