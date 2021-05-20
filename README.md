@@ -84,9 +84,8 @@ The ACM certificate identifier is looked up via the `TF_VAR_domain`
 
 ### Terraform state bucket
 
-**BUG**: The S3 bucket where Terraform state is stored is hard-coded.
-Create a bucket and specify it [in the codebase](terraform/aws.tf)
-before running.
+Terraform state is stored in S3. You will need to create a bucket and
+specify it via the `TF_VAR_state_bucket` variable.
 
 
 ### Dev / CICD environment
@@ -115,14 +114,19 @@ make
 
 ```
 cd terraform
-terraform init # this is only necessary the first time
-TF_VAR_domain=your.domain TF_VAR_branch=dev terraform apply
+TF_VAR_domain=your.domain \
+TF_VAR_state_bucket=<bucketname> \
+TF_VAR_environment=<environment name> \
+terragrunt init && terragrunt apply
 ```
 
-(Note that the `TF_VAR_branch` var may be set to an arbitrary value if
+(Note that the `TF_VAR_environment` var may be set to an arbitrary value if
 `dev` is undesired--for example, Alice and Bob may want to build
 distinct environments so as not to step on each other. See [Namespace
 environments by branch](#Namespace-environments-by-branch), below.)
+
+The variables set via `TF_VAR` env vars may also be specified via
+`tfvars` files, or other methods.
 
 
 ## Developing
@@ -183,7 +187,8 @@ We use [Terragrunt](https://terragrunt.gruntwork.io) to automate the
 configuration of Terraform state, so that each distinct environment
 (`dev` for the developer's local machine, `test` for the automated QA
 regime, and `production` for CICD deploys from the `main` branch) can
-be create & destroyed independently.
+be create & destroyed independently. Each environment's state is
+stored at the `terraform/<env>` key.
 
 AWS resources are likewise named according to environment--e.g. there
 will will always be one Lambda (hello-production), but there may be
@@ -194,8 +199,8 @@ Environments' service endpoints will generally be of the form
 `env.domain.example`, e.g. the REST interface under QA testing will be
 found at `https://test.domain.example`.
 
-The environment can be overridden via the env var `TF_VAR_branch`.
-CICD workflows set this automatically; the local dev env must set this
+The environment is set via the env var `TF_VAR_environment`. CICD
+workflows set this automatically; the local dev env must set this
 explicitly in order for Terragrunt to function properly.
 
 

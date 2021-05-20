@@ -17,7 +17,7 @@ data "aws_acm_certificate" "hello" {
 
 ## Bind the FQDN to the API Gateway
 resource "aws_api_gateway_domain_name" "hello" {
-  domain_name = "${var.branch}.${var.domain}"
+  domain_name = "${var.environment}.${var.domain}"
   regional_certificate_arn = data.aws_acm_certificate.hello.arn
   endpoint_configuration {
     types = ["REGIONAL"]
@@ -26,7 +26,7 @@ resource "aws_api_gateway_domain_name" "hello" {
 resource "aws_api_gateway_base_path_mapping" "hello" {
   api_id = aws_api_gateway_rest_api.hello.id
   stage_name = aws_api_gateway_deployment.hello.stage_name
-  domain_name = "${var.branch}.${var.domain}"
+  domain_name = "${var.environment}.${var.domain}"
 }
 
 
@@ -47,5 +47,5 @@ resource "aws_route53_record" "hello" {
 
 ## Output the custom URL
 output "custom-url" {
-  value = "https://${var.branch}.${var.domain}"
+  value = "https://${var.environment}.${var.domain}"
 }
