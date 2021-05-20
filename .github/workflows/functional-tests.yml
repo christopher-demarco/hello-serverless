@@ -36,6 +36,7 @@ jobs:
           path: hello.app/hello.zip
       - name: Terraform
         run: |
+          apt install terragrunt
           export TF_VAR_environment=${GITHUB_REF##*/}
           cd terraform
           terragrunt init
