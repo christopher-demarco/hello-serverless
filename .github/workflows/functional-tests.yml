@@ -38,7 +38,7 @@ jobs:
         run: |
           export TF_VAR_environment=${GITHUB_REF##*/}
           cd terraform
-          curl -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
+          curl -L -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
           mv terragrunt{_linux_amd64,}
           chmod +x terragrunt
           ./terragrunt init
@@ -80,7 +80,7 @@ jobs:
         run: |
           export TF_VAR_environment=${GITHUB_REF##*/}
           cd terraform
-          curl -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
+          curl -L -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
           mv terragrunt{_linux_amd64,}
           chmod +x terragrunt
           terragrunt init
