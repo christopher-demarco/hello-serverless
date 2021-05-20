@@ -1,0 +1,43 @@
+name: Deploy main branch to production
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: us-west-2
+  TF_VAR_domain: ${{ secrets.domain }}
+  TF_VAR_state_bucket : ${{ secrets.state_bucket }}
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
+      - name: Package app
+        run: |
+          cd hello.app
+          python3 -mvenv venv
+          . ./venv/bin/activate
+          pip install --upgrade pip && pip install --upgrade setuptools
+          [[ -e requirements.txt ]] && pip install -r requirements.txt
+          [[ -e build-requirements.txt ]] && pip install -r build-requirements.txt
+          make
+      - name: Save zipfile for later
+        uses: actions/upload-artifact@v2
+        with:
+          name: zipfile
+          path: hello.app/hello.zip
+      - name: Terraform
+        run: |
+          export TF_VAR_environment=prod
+          cd terraform
+          curl -L -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
+          sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
+          chmod +x /usr/local/bin/terragrunt
+          terragrunt init
+          terragrunt apply -auto-approve
+
