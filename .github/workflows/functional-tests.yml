@@ -38,6 +38,8 @@ jobs:
         run: |
           sudo snap install terragrunt
           export TF_VAR_environment=${GITHUB_REF##*/}
+          echo $TF_VAR_state_bucket
+          echo $TF_VAR_environment
           cd terraform
           terragrunt init
           terragrunt apply -auto-approve
@@ -76,6 +78,7 @@ jobs:
           path: hello.app
       - name: Terraform
         run: |
+          sudo snap install terragrunt
           export TF_VAR_environment=${GITHUB_REF##*/}
           cd terraform
           terragrunt init

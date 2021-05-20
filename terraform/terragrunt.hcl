@@ -1,5 +1,3 @@
-# get_env(NAME)
-
 remote_state {
   backend = "s3"
   generate = {
