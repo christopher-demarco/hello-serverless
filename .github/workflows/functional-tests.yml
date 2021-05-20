@@ -36,13 +36,13 @@ jobs:
           path: hello.app/hello.zip
       - name: Terraform
         run: |
-          sudo snap install terragrunt
-          terragrunt --version
-          terraform --version
           export TF_VAR_environment=${GITHUB_REF##*/}
           cd terraform
-          terragrunt init
-          terragrunt apply -auto-approve
+          curl -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
+          mv terragrunt{_linux_amd64,}
+          chmod +x terragrunt
+          ./terragrunt init
+          ./terragrunt apply -auto-approve
 
   Test_REST_API:
     needs: Build
@@ -78,8 +78,10 @@ jobs:
           path: hello.app
       - name: Terraform
         run: |
-          sudo snap install terragrunt
           export TF_VAR_environment=${GITHUB_REF##*/}
           cd terraform
+          curl -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
+          mv terragrunt{_linux_amd64,}
+          chmod +x terragrunt
           terragrunt init
           terragrunt destroy -auto-approve
