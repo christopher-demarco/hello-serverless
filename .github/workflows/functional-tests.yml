@@ -62,7 +62,8 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v2
       - name: Test that the Lambda uses Python 3.6
-        run:
+        run: |
+          export TF_VAR_environment=${GITHUB_REF##*/}
           tests/integration/python.sh
 
   Cleanup:

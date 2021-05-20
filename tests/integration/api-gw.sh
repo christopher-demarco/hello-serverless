@@ -3,7 +3,7 @@
 set -e
 
 cd terraform
-terraform init
+terragrunt init
 
 URL=$(terraform output api-gw-url | sed -e 's/"//g')
 OUT=$(curl -s $URL)
