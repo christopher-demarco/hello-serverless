@@ -1,10 +1,8 @@
 # Create a Lambda function
 
-## TODO: Make it regional?
-
 resource "aws_lambda_function" "hello" {
   filename = "../hello.app/hello.zip"
-  function_name = "hello"
+  function_name = "hello-${var.environment}"
   handler = "hello.main"
   role = aws_iam_role.hello.arn
   source_code_hash = filebase64sha256("../hello.app/hello.zip")
@@ -16,7 +14,7 @@ resource "aws_lambda_function" "hello" {
 ## Policy, the Lambda won't be able to do much except run pure Python.
 
 resource "aws_iam_role" "hello" {
-  name = "hello-lambda-role"
+  name = "hello-${var.environment}-lambda"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",

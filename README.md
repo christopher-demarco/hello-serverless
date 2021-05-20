@@ -1,7 +1,7 @@
 # hello, serverless
 
-Continuously deploy a Python ~> 3.6 application that implements a
-trivial CRUD interface to a collection of plaintext files. The
+Continuously deploy to AWS a Python ~> 3.6 application that implements
+a trivial CRUD interface to a collection of plaintext files. The
 following requirements are specified; click into the test badge below
 to find each feature's test status:
 
@@ -53,12 +53,12 @@ Registering a domain and creating the zone is outside of the scope of
 this project.
 
 Throughout this documentation we refer to your custom domain as
-`custom.domain`; substitute your actual value.
+`domain.example`; substitute your actual value.
 
 The value of the custom domain is read from the `TF_VAR_domain` env
 var--set by hand in development, and via a [GitHub
 Secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
-in CICD.
+`DOMAIN` in CICD.
 
 
 ### SSL certificate
@@ -69,7 +69,7 @@ throttled](https://github.com/aws/aws-cdk/issues/5889), it
 may be impractical to use it for development. Therefore [Let's
 Encrypt](https://letsencrypt.org) is recommended instead.
 
-You will need to create a wildcard cert for `*.custom.domain` using
+You will need to create a wildcard cert for `*.domain.example` using
 Let's Encrypt or a SSL provider of your choice. You may want to test
 with a fake/staging certificate before committing to a
 production-grade cert, to prevent incurring cost or running afoul of
@@ -84,9 +84,11 @@ The ACM certificate identifier is looked up via the `TF_VAR_domain`
 
 ### Terraform state bucket
 
-**BUG**: The S3 bucket where Terraform state is stored is hard-coded.
-Create a bucket and specify it [in the codebase](terraform/aws.tf)
-before running.
+Terraform state is stored in S3. You will need to create a bucket;
+specify it via the `TF_VAR_state_bucket` variable in the dev
+environment and as a [GitHub
+Secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
+`STATE_BUCKET` in CICD.
 
 
 ### Dev / CICD environment
@@ -94,6 +96,7 @@ before running.
   - Python ~> 3.6.x
   - Terraform ~> 12.x
   - AWS credentials accessible via `AWS_PROFILE`
+  - [Terragrunt](https://terragrunt.gruntwork.io)
   
 
 ## Usage
@@ -114,9 +117,19 @@ make
 
 ```
 cd terraform
-terraform init # this is only necessary the first time
-TF_VAR_domain=your.domain terraform apply
+TF_VAR_domain=your.domain \
+TF_VAR_state_bucket=<bucketname> \
+TF_VAR_environment=<environment name> \
+terragrunt init && terragrunt apply
 ```
+
+(Note that the `TF_VAR_environment` var may be set to an arbitrary value if
+`dev` is undesired--for example, Alice and Bob may want to build
+distinct environments so as not to step on each other. See [Namespace
+environments by branch](#Namespace-environments-by-branch), below.)
+
+The variables set via `TF_VAR` env vars may also be specified via
+`tfvars` files, or other methods.
 
 
 ## Developing
@@ -165,15 +178,33 @@ of the tooling is in service of the ultimate goal: To make the
 customer feel confident that everything's functioning as expected.
 
 
-### Namespace by branch
 
-Unshareable resources--the DNS name and API Gateway
-[stage](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-deploy-api.html)
-are namespaced by branch. The branchname is specified in a Terraform
-[variable](terraform/vars.tf) `branch`. 
 
-On the local dev machine, this is set to `dev`; override by setting
-the env var `TF_VAR_branch`.
+### Namespace environments by branch
+
+We define an "environment" as a named collection of resources deployed
+to AWS, which is managed independently of, and can coexist with,
+arbitrarily-many other environments.
+
+We use [Terragrunt](https://terragrunt.gruntwork.io) to automate the
+configuration of Terraform state, so that each distinct environment
+(`dev` for the developer's local machine, `test` for the automated QA
+regime, and `production` for CICD deploys from the `main` branch) can
+be create & destroyed independently. Each environment's state is
+stored at the `terraform/<env>` key.
+
+AWS resources are likewise named according to environment--e.g. there
+will will always be one Lambda (hello-production), but there may be
+additionally two others (i.e. hello-test and hello-dev) at any given
+point in time.
+
+Environments' service endpoints will generally be of the form
+`env.domain.example`, e.g. the REST interface under QA testing will be
+found at `https://test.domain.example`.
+
+The environment is set via the env var `TF_VAR_environment`. CICD
+workflows set this automatically; the local dev env must set this
+explicitly in order for Terragrunt to function properly.
 
 
 ### CICD
@@ -196,7 +227,8 @@ workflows; in the local dev env it defaults to `dev`.
 
 Deploy tasks, integration tests, and end-to-end tests require AWS
 credentials to be set as [GitHub
-Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets).
+Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets)
+`AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
 -----
 Copyright (c) 2021 Christopher DeMarco. All rights reserved.

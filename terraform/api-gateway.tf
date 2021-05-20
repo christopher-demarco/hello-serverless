@@ -2,7 +2,7 @@
 
 ## Create the bare object
 resource "aws_api_gateway_rest_api" "hello" {
-  name = "hello"
+  name = "hello-${var.environment}"
 }
 
 
@@ -40,7 +40,7 @@ resource "aws_api_gateway_deployment" "hello" {
     aws_api_gateway_integration.hello_root
   ]
   rest_api_id = aws_api_gateway_rest_api.hello.id
-  stage_name = var.branch
+  stage_name = var.environment
 }
 
 
