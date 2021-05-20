@@ -52,6 +52,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Test that the API GW works
         run: |
+          export TF_VAR_environment=${GITHUB_REF##*/}
           curl -L -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
           sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
           chmod +x /usr/local/bin/terragrunt
