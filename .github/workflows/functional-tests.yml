@@ -59,6 +59,7 @@ jobs:
           tests/integration/api-gw.sh
       - name: Test HTTPS
         run: |
+          export TF_VAR_environment=${GITHUB_REF##*/}
           curl -L -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
           sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
           chmod +x /usr/local/bin/terragrunt
