@@ -7,7 +7,7 @@ to find each feature's test status:
 
 [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml/badge.svg)](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml)
 
-- The application will present a [REST API](terraform/api-gateway.tf)(HTTPS with TLS v.1.2) as the consumer interface
+- The application will present a [REST API](terraform/api-gateway.tf) (HTTPS with TLS v.1.2) as the consumer interface
 
 - It will be deployed using [regional function-as-a-service](terraform/lambda.tf)
 
