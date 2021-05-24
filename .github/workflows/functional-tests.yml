@@ -82,7 +82,7 @@ jobs:
           tests/functional/https-output.sh
 
   Cleanup:
-    needs: Integration-tests
+    needs: Functional-tests
     runs-on: ubuntu-latest
     steps:
       - name: Clone repo
