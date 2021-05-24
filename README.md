@@ -217,8 +217,7 @@ Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets)
 
 ## Known issues
 
-- [The app is not named user_uploads.py]
-(https://github.com/christopher-demarco/hello-serverless/issues/79)
+- [The app is not named user_uploads.py](https://github.com/christopher-demarco/hello-serverless/issues/79)
 
 
 
