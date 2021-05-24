@@ -54,6 +54,10 @@ jobs:
         run: |
           export TF_VAR_environment=${GITHUB_REF##*/}
           tests/integration/python.sh
+      - name: Test that the CloudWatch logs are retained for 7 days
+        run: |
+          export TF_VAR_environment=${GITHUB_REF##*/}
+          tests/integration/log-retention.sh
       - name: Test TLS version
         run: |
           export TF_VAR_environment=${GITHUB_REF##*/}
