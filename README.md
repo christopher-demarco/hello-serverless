@@ -27,7 +27,7 @@ files. The following requirements are specified:
 - [centralized logging](tests/integration/lambda-logs.sh) with a [7-day
   retention policy](tests/integration/log-retention.sh)
 
-- TODO least privilege access model
+- [least privilege access model](terraform/lambda.tf)
 
 - TODO the database listener should not be exposed to any other
   applications or consumers
@@ -37,8 +37,7 @@ TODO The app is a single file called user_uploads.py
 
 TODO The app requires db credentials and a client API key used to
 access a remote service; both are only accessible to the application
-from within its runtime 
-.
+from within its runtime
 
 The application does not require regional redundancy or failover
 capabilities; otherwise the code should be production-ready , with all
@@ -71,15 +70,15 @@ Secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
 
 Because [Amazon's ACM certificate infrastructure is grossly,
 inconsistently, and secretly
-throttled](https://github.com/aws/aws-cdk/issues/5889), it
-may be impractical to use it for development. Therefore [Let's
+throttled](https://github.com/aws/aws-cdk/issues/5889), it may be
+impractical to use it for development. Therefore [Let's
 Encrypt](https://letsencrypt.org) is recommended instead.
 
 You will need to create a wildcard cert for `*.domain.example` using
 Let's Encrypt or a SSL provider of your choice. You may want to test
 with a fake/staging certificate before committing to a
 production-grade cert, to prevent incurring cost or running afoul of
-service limits. Caveat emptor!
+service limits.
 
 Upload the certificate to AWS ACM. Development and CICD workflows will
 re-use this certificate for all deployments.
@@ -107,11 +106,11 @@ Secret](https://docs.github.com/en/actions/reference/encrypted-secrets)
 
 ## Usage
 
-The project is intended to be deployed via GitHub CICD. Fork this
-repo and *TODO TBD*.
+The project is intended to be deployed via [GitHub
+CICD](.github/workflows).
 
 
-### Create the app bundle
+### Manually create the app bundle
 
 ```
 cd hello.app
@@ -119,7 +118,7 @@ make
 ```
 
 
-### Create cloud infra
+### Manually create cloud infra
 
 ```
 cd terraform
@@ -129,12 +128,13 @@ TF_VAR_environment=<environment name> \
 terragrunt init && terragrunt apply
 ```
 
-(Note that the `TF_VAR_environment` var may be set to an arbitrary value if
-`dev` is undesired--for example, Alice and Bob may want to build
-distinct environments so as not to step on each other. See [Namespace
-environments by branch](#Namespace-environments-by-branch), below.)
+(Note that the `TF_VAR_environment` var may be set to an arbitrary
+value if `dev` is not desired--for example, Alice and Bob may want to
+build distinct environments so as not to step on each other. See
+[Namespace environments by branch](#Namespace-environments-by-branch),
+below.)
 
-The variables set via `TF_VAR` env vars may also be specified via
+The variables set via `TF_VAR_` env vars may also be specified via
 `tfvars` files, or other methods.
 
 
@@ -163,28 +163,6 @@ make test
 
 
 ## Design
-
-### Intent first--automate the testing of your premises.
-
-This is an attempt at a self-documenting project.
-
-Code, tooling, workflows, engagement--all should work in harmony
-toward an ultimate goal: If such-and-such tests pass, you're done.
-What are the acceptance criteria by which we're paid? 
-
-We write functional tests first: Because they're
-failing--automatically, via cicd--we know we're not done. We don't
-need to know how to execute them (`/bin/false` is a useful
-placeholder), we can write tests as we go for a service as we figure
-out how to implement it. Bugs, defects, and various problems are
-documented (in tests) as they're encountered.
-
-Now the reader of the README knows how "complete" the project is. All
-of the tooling is in service of the ultimate goal: To make the
-customer feel confident that everything's functioning as expected.
-
-
-
 
 ### Namespace environments by branch
 
@@ -236,5 +214,15 @@ credentials to be set as [GitHub
 Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets)
 `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
+
+## Known issues
+
+- [The app is not named user_uploads.py]
+(https://github.com/christopher-demarco/hello-serverless/issues/79)
+
+
+
 -----
 Copyright (c) 2021 Christopher DeMarco. All rights reserved.
+
+
