@@ -24,7 +24,8 @@ files. The following requirements are specified:
 - TODO an automated health check against a test endpoint, scheduled
   daily
 
-- TODO centralized logging with a 7-day retention policy
+- [centralized logging](terraform/logs.tf) with a [7-day
+  retention policy](tests/integration/log-retention.sh)
 
 - TODO least privilege access model
 
