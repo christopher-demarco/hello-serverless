@@ -44,32 +44,7 @@ jobs:
           terragrunt init
           terragrunt apply -auto-approve
 
-  Test_REST_API:
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clone repo
-        uses: actions/checkout@v2
-      - name: Test that the API GW works
-        run: |
-          export TF_VAR_environment=${GITHUB_REF##*/}
-          curl -L -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
-          sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
-          chmod +x /usr/local/bin/terragrunt
-          tests/integration/api-gw.sh
-      - name: Test HTTPS
-        run: |
-          export TF_VAR_environment=${GITHUB_REF##*/}
-          curl -L -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
-          sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
-          chmod +x /usr/local/bin/terragrunt
-          tests/functional/https-output.sh
-      - name: Test TLS version
-        run: |
-          export TF_VAR_environment=${GITHUB_REF##*/}
-          tests/integration/tls_1.2.sh
-
-  Test_function-as-a-service:
+  Integration-tests:
     needs: Build
     runs-on: ubuntu-latest
     steps:
@@ -79,9 +54,35 @@ jobs:
         run: |
           export TF_VAR_environment=${GITHUB_REF##*/}
           tests/integration/python.sh
+      - name: Test TLS version
+        run: |
+          export TF_VAR_environment=${GITHUB_REF##*/}
+          tests/integration/tls_1.2.sh
+      - name: Test that the API GW works
+        run: |
+          export TF_VAR_environment=${GITHUB_REF##*/}
+          curl -L -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
+          sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
+          chmod +x /usr/local/bin/terragrunt
+          tests/integration/api-gw.sh
+
+  Test_REST_API:
+    needs: Integration-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
+
+      - name: Test HTTPS
+        run: |
+          export TF_VAR_environment=${GITHUB_REF##*/}
+          curl -L -O https://github.com/gruntwork-io/terragrunt/releases/download/v0.29.3/terragrunt_linux_amd64
+          sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
+          chmod +x /usr/local/bin/terragrunt
+          tests/functional/https-output.sh
 
   Cleanup:
-    needs: [Build, Test_REST_API, Test_function-as-a-service]
+    needs: Integration-tests
     runs-on: ubuntu-latest
     steps:
       - name: Clone repo
