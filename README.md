@@ -32,8 +32,7 @@ files. The following requirements are specified:
   applications or consumers
 
 
-The app is a single file called [user_uploads.py](app/user_uploads.py]
-[![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/unit-tests.yml/badge.svg)](app/hello_test.py).
+TODO The app is a single file called user_uploads.py
 
 TODO The app requires db credentials and a client API key used to
 access a remote service; both are only accessible to the application
