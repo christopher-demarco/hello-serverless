@@ -9,7 +9,7 @@ api_gw=$(echo $api_gws | jq ".items[] | select(.domainName == \"$fqdn\")")
 if [[ $(echo $api_gw | jq -r '.securityPolicy') == "TLS_1_2" ]]; then
     exit
 else
-    echo $api_gw
+    echo $api_gw | jq .
     exit 1
 fi
 

@@ -9,7 +9,8 @@ URL=$(terraform output api-gw-url | sed -e 's/"//g')
 OUT=$(curl -s $URL)
 cd ..
 if [[ $OUT == '"Hello, serverless!"' ]] ; then
-    /bin/true
+    exit
 else
-    /bin/false
+    echo $OUT
+    exit 1
 fi
