@@ -5,7 +5,6 @@
 implements a trivial CRUD interface to a collection of plaintext
 files. The following requirements are specified:
 
-https://github.com/christopher-demarco/hello-serverless/actions
 [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml/badge.svg)](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml)
 
 - The application will present a [REST API](terraform/api-gateway.tf)
