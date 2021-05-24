@@ -24,8 +24,8 @@ files. The following requirements are specified:
 - TODO an automated health check against a test endpoint, scheduled
   daily
 
-- centralized logging] with a [7-day retention
-  policy](tests/integration/log-retention.sh)
+- [centralized logging](tests/integration/lambda-logs.sh) with a [7-day
+  retention policy](tests/integration/log-retention.sh)
 
 - TODO least privilege access model
 

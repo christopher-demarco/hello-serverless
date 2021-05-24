@@ -38,7 +38,7 @@ EOF
 
 ### Permit the Lambda to talk to CloudWatch for logging
 resource "aws_iam_policy" "hello-logs" {
-  name = "hello-${var.environment}"
+  name = "hello-${var.environment}-logs"
   path = "/"
   description = "IAM policy for logging from a lambda"
   policy = <<EOF
