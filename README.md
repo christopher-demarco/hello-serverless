@@ -1,31 +1,36 @@
 # hello, serverless
 
 [Continuously deploy](.github/workflows/deploy-main.yml) to AWS a
-Python ~> 3.6 application that implements a trivial CRUD interface to
-a collection of plaintext files. The following requirements are
-specified; click into the test badge below to find each feature's test
-status:
+[Python ~> 3.6](tests/integration/python.sh) application that
+implements a trivial CRUD interface to a collection of plaintext
+files. The following requirements are specified:
 
-https://github.com/christopher-demarco/hello-serverless/actions?query=branch%3Amain+
+https://github.com/christopher-demarco/hello-serverless/actions
 [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml/badge.svg)](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml)
 
-- The application will present a [REST API](terraform/api-gateway.tf) (HTTPS with TLS v.1.2) as the consumer interface
+- The application will present a [REST API](terraform/api-gateway.tf)
+  (HTTPS with [TLS v.1.2](tests/integration/tls_1.2.sh)) as the
+  consumer interface
 
-- It will be deployed using [regional function-as-a-service](terraform/lambda.tf)
+- It will be deployed using [regional
+  function-as-a-service](terraform/lambda.tf)
 
 - TODO uses a PostgreSQL database at version ~>10
 
 - TODO maintains a cache layer for the database
 
-- TODO requires storage for uploaded data files with a 30-day retention policy
+- TODO requires storage for uploaded data files with a 30-day
+  retention policy
 
-- TODO an automated health check against a test endpoint, scheduled daily
+- TODO an automated health check against a test endpoint, scheduled
+  daily
 
 - TODO centralized logging with a 7-day retention policy
 
 - TODO least privilege access model
 
-- TODO the database listener should not be exposed to any other applications or consumers
+- TODO the database listener should not be exposed to any other
+  applications or consumers
 
 
 The app is a single file called [user_uploads.py](app/user_uploads.py]
