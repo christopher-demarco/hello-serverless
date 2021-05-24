@@ -6,6 +6,7 @@ a collection of plaintext files. The following requirements are
 specified; click into the test badge below to find each feature's test
 status:
 
+https://github.com/christopher-demarco/hello-serverless/actions?query=branch%3Amain+
 [![](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml/badge.svg)](https://github.com/christopher-demarco/hello-serverless/actions/workflows/functional-tests.yml)
 
 - The application will present a [REST API](terraform/api-gateway.tf) (HTTPS with TLS v.1.2) as the consumer interface
