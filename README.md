@@ -201,8 +201,8 @@ Because GitHub Actions are billable, we restrict all automated testing
 to the `test` branch. A person could force-push to that branch if it's
 diverged from `main`.
 
-All merges to `main` run the full test suite, and upon passing are
-promoted to production.
+All merges to `main` [run the full test suite, and upon passing are
+promoted to production](.github/workflows/deploy-main.yml).
 
 The `branch` Terraform variable is set automatically in these
 workflows; in the local dev env it defaults to `dev`.
@@ -219,6 +219,15 @@ Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets)
 
 - [The app is not named user_uploads.py](https://github.com/christopher-demarco/hello-serverless/issues/79)
 
+- [Undocumented IAM Policy for running Terraform](https://github.com/christopher-demarco/hello-serverless/issues/48)
+
+- [The Lambda is permitted access to all log groups instead of just its own](https://github.com/christopher-demarco/hello-serverless/projects/1#card-61679128)
+
+- [Terragrunt is installed via a ridiculous process](https://github.com/christopher-demarco/hello-serverless/issues/74)
+
+- [The Python version test requires an exact match instead of ~>](https://github.com/christopher-demarco/hello-serverless/issues/60)
+
+- [The functional curl test occasionally fails the first time it's run](https://github.com/christopher-demarco/hello-serverless/issues/78)
 
 
 -----
